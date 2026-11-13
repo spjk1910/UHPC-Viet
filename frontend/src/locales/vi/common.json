@@ -1,0 +1,22 @@
+{
+  "navigation": {
+    "home": "Trang Chủ",
+    "about": "Giới Thiệu",
+    "products": "Sản Phẩm",
+    "applications": "Dự Án",
+    "catalogue": "Danh Mục Sản Phẩm",
+    "contact": "Liên Hệ"
+  },
+  "productMenu": {
+    "categories": "Danh mục sản phẩm",
+    "viewAll": "Xem tất cả sản phẩm",
+    "viewDetails": "Xem chi tiết"
+  },
+  "contactType": {
+    "contactUs": "Liên hệ với chúng tôi",
+    "contactQuote": "Liên hệ báo giá"
+  },
+  "search": {
+    "search": "Tìm kiếm"
+  }
+}

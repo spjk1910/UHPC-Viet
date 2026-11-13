@@ -1,1 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap');
+
 @import "tailwindcss";
+
+@theme {
+  /* Brand colors */
+  --color-brand-50: #eaf6ee;
+  --color-brand-100: #dce9df;
+  --color-brand-500: #00a651;
+  --color-brand-600: #008f45;
+  --color-brand-700: #007a3b;
+
+  /* Neutral colors */
+  --color-dark: #292b2d;
+  --color-concrete: #858789;
+  --color-light: #f4f5f3;
+  --color-white: #ffffff;
+
+  /* Typography */
+  --font-sans: "Be Vietnam Pro", sans-serif;
+
+  /* Custom breakpoints */
+  --breakpoint-xs: 480px;
+  --breakpoint-3xl: 1600px;
+
+  /* Container */
+  --container-content: 80rem;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    color: var(--color-dark);
+    background-color: var(--color-white);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  button, input, textarea, select {
+    font: inherit;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+@layer components {
+  .site-container {
+    width: min(100% - 32px, 1280px);
+    margin-inline: auto;
+  }
+
+  @media (min-width: 768px) {
+    .site-container {
+      width: min(100% - 48px, 1280px);
+    }
+  }
+
+  .section-spacing {
+    padding-block: 80px;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 3vw, 36px);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--color-dark);
+  }
+
+  .section-description {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--color-concrete);
+  }
+}

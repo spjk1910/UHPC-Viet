@@ -1,0 +1,22 @@
+{
+  "navigation": {
+    "home": "Home",
+    "about": "About Us",
+    "products": "Products",
+    "applications": "Projects",
+    "catalogue": "Catalogue",
+    "contact": "Contact"
+  },
+  "productMenu": {
+    "categories": "Product Categories",
+    "viewAll": "View All Products",
+    "viewDetails": "View Details"
+  },
+  "contactType": {
+    "contactUs": "Contact Us",
+    "contactQuote": "Request a Quote"
+  },
+  "search": {
+    "search": "Search"
+  }
+}
