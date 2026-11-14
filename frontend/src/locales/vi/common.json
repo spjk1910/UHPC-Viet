@@ -36,6 +36,42 @@
     "message": "Nội dung cần tư vấn",
     "submit": "Gửi yêu cầu"
   },
+  "productsPage": {
+    "eyebrow": "Sản phẩm của chúng tôi",
+    "title": "Sản phẩm",
+    "description": "Khám phá các sản phẩm UHPC-Việt được thiết kế bền chắc, chính xác và tinh tế cho nhiều ứng dụng bê tông.",
+    "heroPlaceholder": "Vị trí ảnh sản phẩm",
+    "imagePlaceholder": "Vị trí ảnh sản phẩm",
+    "all": "Tất cả",
+    "search": "Tìm kiếm sản phẩm",
+    "loadError": "Không thể tải sản phẩm. Vui lòng thử lại sau.",
+    "empty": "Không có sản phẩm phù hợp với tìm kiếm."
+  },
+  "productDetail": {
+    "notFound": "Không tìm thấy sản phẩm",
+    "back": "Quay lại sản phẩm",
+    "imagePlaceholder": "Vị trí ảnh sản phẩm",
+    "description": "Giải pháp bê tông hiệu suất cao được thiết kế cho các ứng dụng {{product}}.",
+    "requestQuote": "Liên hệ báo giá",
+    "selectedProduct": "Tên sản phẩm",
+    "closeQuote": "Đóng biểu mẫu báo giá",
+    "descriptionTab": "Mô tả sản phẩm",
+    "specificationsTab": "Thông số kỹ thuật",
+    "usageTab": "Hướng dẫn sử dụng",
+    "detailText": "Liên hệ với đội ngũ của chúng tôi để được tư vấn chi tiết về kích thước, hoàn thiện và lắp đặt.",
+    "specValue": "Liên hệ để biết thêm",
+    "related": "Sản phẩm liên quan",
+    "highlights": {
+      "performance": "Hiệu suất cao",
+      "durable": "Bền chắc theo thời gian",
+      "versatile": "Phù hợp nhiều ứng dụng"
+    },
+    "specs": {
+      "size": "Kích thước",
+      "finish": "Bề mặt",
+      "application": "Ứng dụng"
+    }
+  },
   "home": {
     "previous": "Các mục trước",
     "next": "Các mục tiếp theo",

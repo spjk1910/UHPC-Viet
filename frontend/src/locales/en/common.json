@@ -36,6 +36,42 @@
     "message": "Tell us about your project",
     "submit": "Send inquiry"
   },
+  "productsPage": {
+    "eyebrow": "Our products",
+    "title": "Products",
+    "description": "Explore UHPC-Việt products designed for durable, precise, and refined concrete applications.",
+    "heroPlaceholder": "Products image placeholder",
+    "imagePlaceholder": "Product image placeholder",
+    "all": "All",
+    "search": "Search products",
+    "loadError": "Products could not be loaded. Please try again later.",
+    "empty": "No products match your search."
+  },
+  "productDetail": {
+    "notFound": "Product not found",
+    "back": "Back to products",
+    "imagePlaceholder": "Product image placeholder",
+    "description": "A high-performance concrete solution designed for {{product}} applications.",
+    "requestQuote": "Request a quote",
+    "selectedProduct": "Product name",
+    "closeQuote": "Close quote form",
+    "descriptionTab": "Product description",
+    "specificationsTab": "Specifications",
+    "usageTab": "Usage guide",
+    "detailText": "Contact our team for product details, sizing, finishes, and installation guidance.",
+    "specValue": "Available on request",
+    "related": "Related products",
+    "highlights": {
+      "performance": "High performance",
+      "durable": "Durable construction",
+      "versatile": "Suitable for many applications"
+    },
+    "specs": {
+      "size": "Size",
+      "finish": "Finish",
+      "application": "Application"
+    }
+  },
   "home": {
     "previous": "Previous items",
     "next": "Next items",
