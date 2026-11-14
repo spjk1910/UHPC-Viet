@@ -3,7 +3,7 @@
     "home": "Trang Chủ",
     "about": "Giới Thiệu",
     "products": "Sản Phẩm",
-    "applications": "Dự Án",
+    "project": "Dự Án",
     "catalogue": "Danh Mục Sản Phẩm",
     "contact": "Liên Hệ"
   },
@@ -18,5 +18,103 @@
   },
   "search": {
     "search": "Tìm kiếm"
+  },
+  "cataloguePage": {
+    "title": "Catalogue sản phẩm UHPC-Việt",
+    "description": "Khám phá danh mục sản phẩm và các giải pháp bê tông trong catalogue mới nhất.",
+    "open": "Mở tab mới",
+    "download": "Tải PDF"
+  },
+  "home": {
+    "previous": "Các mục trước",
+    "next": "Các mục tiếp theo",
+    "hero": {
+      "eyebrow": "Bê tông hiệu suất cao",
+      "title": "Giải pháp bê tông kiến tạo tương lai",
+      "description": "UHPC-Việt tạo ra các sản phẩm bê tông bền vững, tinh tế cho kiến trúc, xây dựng và phát triển hiện đại.",
+      "primaryAction": "Khám phá sản phẩm",
+      "secondaryAction": "Trao đổi cùng chúng tôi"
+    },
+    "products": {
+      "eyebrow": "Sản phẩm của chúng tôi",
+      "title": "Giải pháp bê tông toàn diện",
+      "action": "Xem tất cả sản phẩm"
+    },
+    "story": {
+      "eyebrow": "Cách chúng tôi làm việc",
+      "title": "Kiến tạo với mục đích rõ ràng",
+      "description": "Từ sản xuất chính xác đến thiết kế chỉn chu, chúng tôi giúp bê tông hiệu suất cao dễ lựa chọn, thi công và tin cậy hơn.",
+      "action": "Khám phá UHPC-Việt"
+    },
+    "benefits": {
+      "performance": {
+        "title": "Hiệu suất cao",
+        "description": "Mạnh mẽ, tin cậy và được thiết kế cho các ứng dụng khắt khe."
+      },
+      "durable": {
+        "title": "Bền vững theo thời gian",
+        "description": "Vật liệu bền chắc, duy trì chất lượng lâu dài."
+      },
+      "sustainable": {
+        "title": "Lựa chọn có trách nhiệm",
+        "description": "Giải pháp giúp giảm lãng phí và nâng cao hiệu quả."
+      },
+      "precise": {
+        "title": "Sản xuất chính xác",
+        "description": "Chi tiết đồng nhất và chất lượng ổn định trong mọi dự án."
+      }
+    },
+    "applications": {
+      "eyebrow": "Ứng dụng",
+      "title": "Bê tông cho những công trình thực tế",
+      "action": "Xem dự án",
+      "items": {
+        "commercial": "Kiến trúc thương mại",
+        "landscape": "Cảnh quan và không gian công cộng",
+        "industrial": "Công trình công nghiệp",
+        "residential": "Khu dân cư"
+      }
+    },
+    "contact": {
+      "eyebrow": "Cùng hợp tác",
+      "title": "Bạn đang có một dự án bê tông?",
+      "description": "Hãy chia sẻ điều bạn đang xây dựng để đội ngũ của chúng tôi tư vấn giải pháp phù hợp.",
+      "action": "Liên hệ với chúng tôi",
+      "formTitle": "Bắt đầu trao đổi",
+      "name": "Họ và tên",
+      "phone": "Số điện thoại",
+      "message": "Giới thiệu về dự án",
+      "submit": "Gửi yêu cầu"
+    }
+  },
+  "footer": {
+    "tagline": "Kiến tạo giá trị bền vững",
+    "products": "SẢN PHẨM",
+    "quickLinks": "LIÊN KẾT",
+    "contact": "LIÊN HỆ",
+    "copyright": "Tất cả quyền được bảo lưu.",
+    "contactInfo": {
+      "phone": "0909296778",
+      "email": "uhpc-viet@hoangvinh.vn",
+      "address": "569/130 Đường Lê Trọng Tấn, Phường Bình Hưng Hòa, Thành phố Hồ Chí Minh"
+    },
+    "social": {
+      "zaloUrl": "",
+      "facebookUrl": ""
+    },
+    "contactBubble": {
+      "hotline": "Hotline hỗ trợ",
+      "zalo": "Liên hệ qua Zalo",
+      "email": "Gửi Email",
+      "open": "Mở tùy chọn liên hệ",
+      "close": "Đóng tùy chọn liên hệ",
+      "backToTop": "Lên đầu trang"
+    }
+  },
+  "categories": {
+    "spacer": "Viên kê bê tông",
+    "panel": "Tấm panel",
+    "furniture": "Nội thất",
+    "other": "Sản phẩm khác"
   }
 }

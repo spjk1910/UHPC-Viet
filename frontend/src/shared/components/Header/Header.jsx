@@ -4,6 +4,9 @@ import { Link, NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import logo from '../../../assets/images/logo/uhpc-viet_logo.png'
+import ChevronDownIcon from '../../../assets/icons/ChevronDownIcon'
+import MenuIcon from '../../../assets/icons/MenuIcon'
+import SearchIcon from '../../../assets/icons/SearchIcon'
 import LanguageSwitcher from './LanguageSwitcher'
 import ProductMegaMenu from './ProductMenu'
 import { getProductNavigation } from '../../../features/products/services/productService'
@@ -110,17 +113,11 @@ function Header() {
             >
               {t('navigation.products')}
 
-              <svg
+              <ChevronDownIcon
                 className={`h-4 w-4 transition-transform ${
                   productsOpen ? 'rotate-180' : ''
                 }`}
-                viewBox="0 0 20 20"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-              >
-                <path d="m5 7 5 5 5-5" />
-              </svg>
+              />
             </Link>
 
             {productsOpen && (
@@ -132,7 +129,7 @@ function Header() {
           </div>
 
           <NavLink to="/projects" className={navLinkClass}>
-            {t('navigation.applications')}
+            {t('navigation.project')}
           </NavLink>
 
            <NavLink to="/catalogue" className={navLinkClass}>
@@ -159,16 +156,7 @@ function Header() {
             onClick={() => setSearchOpen(!searchOpen)}
             className="text-brand-700 transition-colors hover:text-brand-500"
           >
-            <svg
-              className="h-7 w-7"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <circle cx="11" cy="11" r="7" />
-              <path d="m16 16 5 5" />
-            </svg>
+            <SearchIcon className="h-7 w-7" />
           </button>
 
           <Link
@@ -191,16 +179,7 @@ function Header() {
             onClick={() => setSearchOpen((isOpen) => !isOpen)}
             className="rounded-lg p-2 text-brand-700 transition-colors hover:bg-brand-50 hover:text-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
           >
-            <svg
-              className="h-5 w-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <circle cx="11" cy="11" r="7" />
-              <path d="m16 16 5 5" />
-            </svg>
+            <SearchIcon className="h-5 w-5" />
           </button>
           <button
             type="button"
@@ -210,19 +189,7 @@ function Header() {
             onClick={() => setMobileMenuOpen((isOpen) => !isOpen)}
             className="rounded-lg p-2 text-dark transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
           >
-            <svg
-              className="h-7 w-7"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              {mobileMenuOpen ? (
-                <path d="m6 6 12 12M18 6 6 18" />
-              ) : (
-                <path d="M3 6h18M3 12h18M3 18h18" />
-              )}
-            </svg>
+            <MenuIcon isOpen={mobileMenuOpen} className="h-7 w-7" />
           </button>
         </div>
 

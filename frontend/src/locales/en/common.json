@@ -3,7 +3,7 @@
     "home": "Home",
     "about": "About Us",
     "products": "Products",
-    "applications": "Projects",
+    "project": "Projects",
     "catalogue": "Catalogue",
     "contact": "Contact"
   },
@@ -18,5 +18,103 @@
   },
   "search": {
     "search": "Search"
+  },
+  "cataloguePage": {
+    "title": "UHPC-Việt product catalogue",
+    "description": "Explore our product range and concrete solutions in the latest catalogue.",
+    "open": "Open in new tab",
+    "download": "Download PDF"
+  },
+  "home": {
+    "previous": "Previous items",
+    "next": "Next items",
+    "hero": {
+      "eyebrow": "High-performance concrete",
+      "title": "Concrete solutions for a better future",
+      "description": "UHPC-Viet creates durable, refined concrete products for architecture, construction, and sustainable development.",
+      "primaryAction": "Explore products",
+      "secondaryAction": "Talk to our team"
+    },
+    "products": {
+      "eyebrow": "Our products",
+      "title": "Complete concrete solutions",
+      "action": "View all products"
+    },
+    "story": {
+      "eyebrow": "Our approach",
+      "title": "Building with purpose",
+      "description": "From precise manufacturing to thoughtful design, we make high-performance concrete easier to specify, install, and trust.",
+      "action": "Discover UHPC-Viet"
+    },
+    "benefits": {
+      "performance": {
+        "title": "High performance",
+        "description": "Strong, reliable, and engineered for demanding applications."
+      },
+      "durable": {
+        "title": "Built to last",
+        "description": "Resilient materials that keep their quality over time."
+      },
+      "sustainable": {
+        "title": "Responsible choices",
+        "description": "Solutions designed to reduce waste and improve efficiency."
+      },
+      "precise": {
+        "title": "Made with precision",
+        "description": "Consistent details and quality from production to project."
+      }
+    },
+    "applications": {
+      "eyebrow": "Applications",
+      "title": "Concrete made for real projects",
+      "action": "See our projects",
+      "items": {
+        "commercial": "Commercial architecture",
+        "landscape": "Landscape and public spaces",
+        "industrial": "Industrial facilities",
+        "residential": "Residential development"
+      }
+    },
+    "contact": {
+      "eyebrow": "Let`s work together",
+      "title": "Have a concrete project in mind?",
+      "description": "Tell us what you are building and our team will help you find the right solution.",
+      "action": "Contact us",
+      "formTitle": "Start a conversation",
+      "name": "Your name",
+      "phone": "Phone number",
+      "message": "Tell us about your project",
+      "submit": "Send an inquiry"
+    }
+  },
+  "footer": {
+    "tagline": "Building sustainable value",
+    "products": "PRODUCTS",
+    "quickLinks": "QUICK LINKS",
+    "contact": "CONTACT",
+    "copyright": "All rights reserved.",
+    "contactInfo": {
+      "phone": "0909296778",
+      "email": "uhpc-viet@hoangvinh.vn",
+      "address": "569/130 Le Trong Tan Street, Binh Hung Hoa Ward, Ho Chi Minh city"
+    },
+    "social": {
+      "zaloUrl": "",
+      "facebookUrl": ""
+    },
+    "contactBubble": {
+      "hotline": "Hotline Support",
+      "zalo": "Contact via Zalo",
+      "email": "Send an Email",
+      "open": "Open contact options",
+      "close": "Close contact options",
+      "backToTop": "Back to top"
+    }
+  },
+  "categories": {
+    "spacer": "Spacer",
+    "panel": "Panel",
+    "furniture": "Furniture",
+    "other": "Other products"
   }
 }

@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom'
 
 import Header from '../shared/components/Header/Header'
 import Footer from '../shared/components/Footer/Footer'
+import ContactBubble from '../shared/components/ContactBubble/ContactBubble'
 
 export function MainLayout() {
   return (
@@ -13,6 +14,7 @@ export function MainLayout() {
       </main>
 
       <Footer />
+      <ContactBubble />
     </div>
   )
 }
