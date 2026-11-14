@@ -35,7 +35,7 @@ function ContactBubble() {
             setIsOpen(false)
             window.scrollTo({ top: 0, behavior: 'smooth' })
           }}
-          className="fixed bottom-44 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-brand-700 text-white shadow-lg shadow-brand-700/30 transition-colors hover:bg-brand-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 sm:bottom-48 sm:right-8"
+          className="fixed bottom-44 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-brand-600 text-white shadow-lg shadow-brand-500/40 transition-colors hover:bg-brand-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 sm:bottom-48 sm:right-8"
         >
           <ArrowUpIcon className="h-5 w-5" />
         </button>
