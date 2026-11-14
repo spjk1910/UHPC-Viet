@@ -57,16 +57,16 @@ function Footer() {
       <div className="site-container grid grid-cols-1 gap-x-8 gap-y-10 py-12 sm:grid-cols-2 lg:grid-cols-12 lg:gap-y-12">
 
         {/* Company */}
-        <div className="flex flex-col items-center text-center sm:col-span-2 lg:col-span-3 lg:items-start lg:text-left">
-          <Link to="/" className="inline-block">
+        <div className="flex w-full flex-col items-center justify-self-center text-center sm:col-span-2 lg:col-span-3">
+          <Link to="/" className="mx-auto inline-block">
             <img
               src={logo}
               alt="UHPCViet"
-              className="h-14 w-auto object-contain"
+              className="mx-auto h-14 w-auto object-contain"
             />
           </Link>
 
-          <p className="mt-3 max-w-xs text-base leading-7 text-gray-300">
+          <p className="mx-auto mt-3 max-w-xs text-base leading-7 text-gray-300">
             {t('footer.tagline')}
           </p>
         </div>
