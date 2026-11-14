@@ -25,6 +25,17 @@
     "open": "Mở tab mới",
     "download": "Tải PDF"
   },
+  "contactPage": {
+    "eyebrow": "Liên hệ với chúng tôi",
+    "title": "Liên hệ",
+    "informationTitle": "Thông tin liên hệ",
+    "formTitle": "Gửi yêu cầu tư vấn",
+    "mapTitle": "Bản đồ vị trí UHPC-Việt",
+    "name": "Họ và tên",
+    "phone": "Số điện thoại",
+    "message": "Nội dung cần tư vấn",
+    "submit": "Gửi yêu cầu"
+  },
   "home": {
     "previous": "Các mục trước",
     "next": "Các mục tiếp theo",

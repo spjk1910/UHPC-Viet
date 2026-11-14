@@ -25,6 +25,17 @@
     "open": "Open in new tab",
     "download": "Download PDF"
   },
+  "contactPage": {
+    "eyebrow": "Get in touch",
+    "title": "Contact us",
+    "informationTitle": "Contact information",
+    "formTitle": "Request a consultation",
+    "mapTitle": "UHPC-Việt location map",
+    "name": "Full name",
+    "phone": "Phone number",
+    "message": "Tell us about your project",
+    "submit": "Send inquiry"
+  },
   "home": {
     "previous": "Previous items",
     "next": "Next items",
