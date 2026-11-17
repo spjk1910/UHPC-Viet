@@ -6,36 +6,24 @@ import useProductCatalog from '../hooks/useProductCatalog'
 import ProductCard from '../components/ProductCard'
 import ImagePlaceholder from '../../../shared/components/ImagePlaceholder/ImagePlaceholder'
 
-// Sample visualization fallback shown when the product API has no available data.
-const SAMPLE_PRODUCTS = [
-  {
-    id: 'sample-product',
-    slug: 'sample',
-    name: 'UHPC Architectural Panel',
-    categoryName: 'Architectural products',
-    categorySlug: 'architectural-products',
-  },
-]
-
 function ProductsPage() {
   const { t } = useTranslation()
   const [searchParams, setSearchParams] = useSearchParams()
   const { categories, products, isLoading, error } = useProductCatalog()
   const [searchTerm, setSearchTerm] = useState('')
   const selectedCategory = searchParams.get('category') ?? ''
-  const displayProducts = products.length > 0 || !error ? products : SAMPLE_PRODUCTS
 
   const visibleProducts = useMemo(() => {
     const normalizedSearch = searchTerm.trim().toLowerCase()
 
-    return displayProducts.filter((product) => {
+    return products.filter((product) => {
       const matchesCategory = !selectedCategory || product.categorySlug === selectedCategory
       const matchesSearch = !normalizedSearch
         || product.name.toLowerCase().includes(normalizedSearch)
 
       return matchesCategory && matchesSearch
     })
-  }, [displayProducts, searchTerm, selectedCategory])
+  }, [products, searchTerm, selectedCategory])
 
   const selectCategory = (slug) => {
     if (slug) {

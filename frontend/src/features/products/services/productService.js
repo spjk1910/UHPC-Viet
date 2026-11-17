@@ -1,12 +1,22 @@
 export async function getProductNavigation(locale, signal) {
-  const response = await fetch(
-    `/api/public/navigation/products?locale=${locale}`,
-    { signal }
-  )
+  const [categoriesResponse, productsResponse] = await Promise.all([
+    fetch(`/api/categories?locale=${locale}`, { signal }),
+    fetch(`/api/products?locale=${locale}`, { signal }),
+  ])
 
-  if (!response.ok) {
-    throw new Error('Unable to load product navigation')
+  if (!categoriesResponse.ok || !productsResponse.ok) {
+    throw new Error('Unable to load product catalog')
   }
 
-  return response.json()
+  const [categories, products] = await Promise.all([
+    categoriesResponse.json(),
+    productsResponse.json(),
+  ])
+
+  return {
+    categories: categories.map((category) => ({
+      ...category,
+      products: products.filter((product) => product.categorySlug === category.slug),
+    })),
+  }
 }

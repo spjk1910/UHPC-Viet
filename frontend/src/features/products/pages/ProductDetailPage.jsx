@@ -6,57 +6,22 @@ import useProductCatalog from '../hooks/useProductCatalog'
 import ProductCard from '../components/ProductCard'
 import ImagePlaceholder from '../../../shared/components/ImagePlaceholder/ImagePlaceholder'
 
-// Sample visualization: open /products/sample to preview the detail layout without API data.
-const SAMPLE_PRODUCT = {
-  id: 'sample-product',
-  slug: 'sample',
-  name: 'UHPC Architectural Panel',
-  categoryName: 'Architectural products',
-  categorySlug: 'architectural-products',
-  description:
-    'A lightweight, high-performance panel designed for durable architectural facades, feature walls, and refined exterior details.',
-}
-
-const SAMPLE_RELATED_PRODUCTS = [
-  {
-    id: 'sample-column',
-    slug: 'sample-column',
-    name: 'UHPC Decorative Column',
-    categoryName: 'Architectural products',
-  },
-  {
-    id: 'sample-planter',
-    slug: 'sample-planter',
-    name: 'UHPC Landscape Planter',
-    categoryName: 'Landscape products',
-  },
-  {
-    id: 'sample-bench',
-    slug: 'sample-bench',
-    name: 'UHPC Outdoor Bench',
-    categoryName: 'Landscape products',
-  },
-]
-
 function ProductDetailPage() {
   const { t } = useTranslation()
   const { id: slug } = useParams()
   const [activeTab, setActiveTab] = useState('description')
   const [isQuoteOpen, setIsQuoteOpen] = useState(false)
   const { products, isLoading, error } = useProductCatalog()
-  const isSample = slug === SAMPLE_PRODUCT.slug
-  const product = isSample ? SAMPLE_PRODUCT : products.find((item) => item.slug === slug)
-  const relatedProducts = isSample
-    ? SAMPLE_RELATED_PRODUCTS
-    : products
-      .filter((item) => item.slug !== slug && item.categorySlug === product?.categorySlug)
-      .slice(0, 4)
+  const product = products.find((item) => item.slug === slug)
+  const relatedProducts = products
+    .filter((item) => item.slug !== slug && item.categorySlug === product?.categorySlug)
+    .slice(0, 4)
 
-  if (isLoading && !isSample) {
+  if (isLoading) {
     return <main className="site-container py-20"><div className="h-96 animate-pulse rounded-3xl bg-gray-100" /></main>
   }
 
-  if ((error && !isSample) || !product) {
+  if (error || !product) {
     return (
       <main className="site-container py-20 text-center">
         <h1 className="section-title">{t('productDetail.notFound')}</h1>
@@ -83,7 +48,7 @@ function ProductDetailPage() {
                   alt={product.name}
                   loading="eager"
                   decoding="async"
-                  className="aspect-[4/3] h-full w-full object-cover"
+                  className="aspect-4/3 h-full w-full object-cover"
                 />
               ) : (
                 <ImagePlaceholder label={t('productDetail.imagePlaceholder')} className="min-h-80" />

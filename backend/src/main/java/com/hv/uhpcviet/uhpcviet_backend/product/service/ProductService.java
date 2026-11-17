@@ -6,6 +6,7 @@ import com.hv.uhpcviet.uhpcviet_backend.product.entity.Product;
 import com.hv.uhpcviet.uhpcviet_backend.product.entity.ProductTranslation;
 import com.hv.uhpcviet.uhpcviet_backend.product.repository.ProductRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
+    @Transactional(readOnly = true)
     public List<ProductResponse> getAllProducts(String locale) {
         final String validatedLocale = LocaleValidator.validate(locale);
 
@@ -27,6 +29,7 @@ public class ProductService {
                 .toList();
     }
 
+    @Transactional(readOnly = true)
     public ProductResponse getProductBySlug(String slug, String locale) {
         final String validatedLocale = LocaleValidator.validate(locale);
 
