@@ -40,5 +40,16 @@ services:
       db:
         condition: service_healthy
 
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: uhpcviet-frontend
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_HOST_PORT}:80"
+    depends_on:
+      - backend
+
 volumes:
   postgres_data:

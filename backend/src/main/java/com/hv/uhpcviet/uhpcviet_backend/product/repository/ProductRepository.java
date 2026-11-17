@@ -15,7 +15,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             FROM Product p
             JOIN FETCH p.category c
             LEFT JOIN FETCH p.translations pt
-            LEFT JOIN FETCH c.translations ct
             WHERE p.active = true
             ORDER BY p.sortOrder ASC, p.id ASC
             """)
@@ -26,7 +25,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             FROM Product p
             JOIN FETCH p.category c
             LEFT JOIN FETCH p.translations pt
-            LEFT JOIN FETCH c.translations ct
             WHERE p.slug = :slug
               AND p.active = true
             """)
