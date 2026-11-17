@@ -1,21 +1,16 @@
 FROM maven:3.9-eclipse-temurin-25 AS build
+WORKDIR /app
 
-WORKDIR /workspace
-
-COPY pom.xml mvnw ./
-COPY .mvn .mvn
-RUN chmod +x mvnw
-RUN ./mvnw dependency:go-offline -B
-
+COPY pom.xml . 
 COPY src src
-RUN ./mvnw clean package -DskipTests -B
+
+RUN mvn clean package -DskipTests
 
 FROM eclipse-temurin:25-jre
 
 WORKDIR /app
 
-COPY --from=build /workspace/target/*.jar app.jar
+COPY --from=build /app/target/*.jar app.jar
 
 EXPOSE 8080
-
 ENTRYPOINT ["java", "-jar", "app.jar"]
