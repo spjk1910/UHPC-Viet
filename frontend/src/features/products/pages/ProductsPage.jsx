@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 
 import useProductCatalog from '../hooks/useProductCatalog'
 import ProductCard from '../components/ProductCard'
-import ImagePlaceholder from '../../../shared/components/ImagePlaceholder/ImagePlaceholder'
 
 function ProductsPage() {
   const { t } = useTranslation()
@@ -35,9 +34,19 @@ function ProductsPage() {
 
   return (
     <main>
-      <section className="bg-brand-50">
-        <div className="site-container grid items-center gap-8 py-12 md:grid-cols-[1fr_1.2fr] md:py-16">
-          <div>
+      <section className="relative isolate overflow-hidden">
+        <img
+          src="/background_image/product_herosection"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 bg-gradient-to-r from-gray-200/95 via-gray-100/80 to-gray-100/10"
+        />
+        <div className="site-container flex min-h-[300px] items-center py-12 sm:min-h-[360px] md:min-h-[420px]">
+          <div className="max-w-xl">
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-brand-600">
               {t('productsPage.eyebrow')}
             </p>
@@ -48,7 +57,6 @@ function ProductsPage() {
               {t('productsPage.description')}
             </p>
           </div>
-          <ImagePlaceholder label={t('productsPage.heroPlaceholder')} className="min-h-56 rounded-3xl md:min-h-72" />
         </div>
       </section>
 
