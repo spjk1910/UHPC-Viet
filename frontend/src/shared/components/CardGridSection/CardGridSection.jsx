@@ -11,11 +11,15 @@ function CardGridSection({
   actionTo,
   imageLabel,
   items,
+  className = '',
 }) {
   const { t } = useTranslation()
   const scrollRef = useRef(null)
   const [canScrollBack, setCanScrollBack] = useState(false)
   const [canScrollForward, setCanScrollForward] = useState(false)
+  const cardWidthClass = items.length === 3
+    ? 'xl:w-[calc(33.333%_-_0.833rem)]'
+    : 'xl:w-[calc(25%_-_0.9375rem)]'
 
   const updateScrollState = useCallback(() => {
     const element = scrollRef.current
@@ -57,30 +61,48 @@ function CardGridSection({
   const renderCard = (item) => (
     <Link
       to={item.to}
-      className="group overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+      className="group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
     >
-      <ImagePlaceholder
-        label={imageLabel}
-        className="min-h-52 transition-transform duration-300 group-hover:scale-105"
-      />
-      <div className="flex items-center justify-between gap-4 p-5">
+      {item.image ? (
+        <div className="h-52 w-full shrink-0 overflow-hidden bg-gray-50">
+          <img
+            src={item.image}
+            alt={item.title}
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full object-cover object-center"
+          />
+        </div>
+      ) : (
+        <ImagePlaceholder label={imageLabel} className="min-h-52" />
+      )}
+
+      <div className="flex flex-1 items-center justify-between gap-4 p-5">
         <span className="font-semibold text-dark">{item.title}</span>
-        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600">→</span>
+
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600">
+          →
+        </span>
       </div>
     </Link>
   )
 
   return (
-    <section className="section-spacing">
+    <section className={`section-spacing ${className}`}>
       <div className="site-container">
         <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div>
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-brand-600">
               {eyebrow}
             </p>
+
             <h2 className="section-title">{title}</h2>
           </div>
-          <Link to={actionTo} className="text-sm font-semibold text-brand-600 hover:text-brand-700">
+
+          <Link
+            to={actionTo}
+            className="text-sm font-semibold text-brand-600 hover:text-brand-700"
+          >
             {action} →
           </Link>
         </div>
@@ -104,7 +126,7 @@ function CardGridSection({
             {items.map((item) => (
               <div
                 key={item.key}
-                className="min-w-[85%] shrink-0 snap-start sm:min-w-[calc(50%_-_0.625rem)] lg:min-w-[calc(33.333%_-_0.833rem)] xl:min-w-[calc(25%_-_0.9375rem)]"
+                className={`w-[85%] shrink-0 snap-start sm:w-[calc(50%_-_0.625rem)] lg:w-[calc(33.333%_-_0.833rem)] ${cardWidthClass}`}
               >
                 {renderCard(item)}
               </div>

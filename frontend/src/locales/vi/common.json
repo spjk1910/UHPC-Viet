@@ -78,27 +78,46 @@
       "action": "Xem tất cả sản phẩm"
     },
     "story": {
-      "eyebrow": "Cách chúng tôi làm việc",
-      "title": "Kiến tạo với mục đích rõ ràng",
-      "description": "Từ sản xuất chính xác đến thiết kế chỉn chu, chúng tôi giúp bê tông hiệu suất cao dễ lựa chọn, thi công và tin cậy hơn.",
-      "action": "Khám phá UHPC-Việt"
+      "eyebrow": "Về UHPC-Việt",
+      "title": "Đồng hành cùng những công trình bền vững",
+      "description": "UHPC-Việt chuyên sản xuất và cung cấp các sản phẩm bê tông chất lượng cao, ứng dụng công nghệ tiên tiến, đáp ứng nhu cầu xây dựng và kiến trúc hiện đại tại Việt Nam.",
+      "imageAlt": "Công trình kiến trúc bê tông hiện đại của UHPC-Việt",
+      "action": "Tìm hiểu thêm",
+      "highlights": {
+        "quality": {
+          "title": "Chất lượng vượt trội",
+          "description": "Độ bền cao, tuổi thọ lâu dài."
+        },
+        "technology": {
+          "title": "Công nghệ hiện đại",
+          "description": "Quy trình sản xuất tiên tiến."
+        },
+        "partner": {
+          "title": "Đối tác tin cậy",
+          "description": "Đồng hành cùng phát triển."
+        }
+      }
     },
-    "benefits": {
-      "performance": {
-        "title": "Hiệu suất cao",
-        "description": "Mạnh mẽ, tin cậy và được thiết kế cho các ứng dụng khắt khe."
-      },
-      "durable": {
-        "title": "Bền vững theo thời gian",
-        "description": "Vật liệu bền chắc, duy trì chất lượng lâu dài."
-      },
-      "sustainable": {
-        "title": "Lựa chọn có trách nhiệm",
-        "description": "Giải pháp giúp giảm lãng phí và nâng cao hiệu quả."
-      },
-      "precise": {
-        "title": "Sản xuất chính xác",
-        "description": "Chi tiết đồng nhất và chất lượng ổn định trong mọi dự án."
+    "whyChoose": {
+      "eyebrow": "Ưu điểm nổi bật",
+      "title": "Tại sao chọn UHPC-Việt?",
+      "items": {
+        "durability": {
+          "title": "Độ bền vượt trội",
+          "description": "Chịu lực, chống thấm hiệu quả."
+        },
+        "consistency": {
+          "title": "Chất lượng ổn định",
+          "description": "Đáp ứng tiêu chuẩn xây dựng Việt Nam."
+        },
+        "flexibility": {
+          "title": "Giải pháp linh hoạt",
+          "description": "Đáp ứng đa dạng nhu cầu thiết kế."
+        },
+        "capacity": {
+          "title": "Năng lực sản xuất lớn",
+          "description": "Chủ động nguồn hàng, đảm bảo tiến độ."
+        }
       }
     },
     "applications": {
@@ -106,10 +125,9 @@
       "title": "Bê tông cho những công trình thực tế",
       "action": "Xem dự án",
       "items": {
-        "commercial": "Kiến trúc thương mại",
-        "landscape": "Cảnh quan và không gian công cộng",
-        "industrial": "Công trình công nghiệp",
-        "residential": "Khu dân cư"
+        "giga": "Trung tâm thương mại Gigamall",
+        "lixil": "Nhà máy Lixil",
+        "olympus": "Nhà máy Olympus"
       }
     },
     "contact": {

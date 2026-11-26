@@ -78,27 +78,46 @@
       "action": "View all products"
     },
     "story": {
-      "eyebrow": "Our approach",
-      "title": "Building with purpose",
-      "description": "From precise manufacturing to thoughtful design, we make high-performance concrete easier to specify, install, and trust.",
-      "action": "Discover UHPC-Viet"
+      "eyebrow": "About UHPC-Việt",
+      "title": "Building alongside a sustainable future",
+      "description": "UHPC-Việt manufactures and supplies high-quality concrete products. Using advanced technology, we support the evolving needs of modern construction and architecture in Vietnam.",
+      "imageAlt": "Contemporary concrete architecture by UHPC-Việt",
+      "action": "Learn more",
+      "highlights": {
+        "quality": {
+          "title": "Outstanding quality",
+          "description": "High durability and long service life."
+        },
+        "technology": {
+          "title": "Modern technology",
+          "description": "Advanced production processes."
+        },
+        "partner": {
+          "title": "Trusted partner",
+          "description": "Growing together with our partners."
+        }
+      }
     },
-    "benefits": {
-      "performance": {
-        "title": "High performance",
-        "description": "Strong, reliable, and engineered for demanding applications."
-      },
-      "durable": {
-        "title": "Built to last",
-        "description": "Resilient materials that keep their quality over time."
-      },
-      "sustainable": {
-        "title": "Responsible choices",
-        "description": "Solutions designed to reduce waste and improve efficiency."
-      },
-      "precise": {
-        "title": "Made with precision",
-        "description": "Consistent details and quality from production to project."
+    "whyChoose": {
+      "eyebrow": "Our advantages",
+      "title": "Why choose UHPC-Việt?",
+      "items": {
+        "durability": {
+          "title": "Outstanding durability",
+          "description": "Strong load-bearing and effective water resistance."
+        },
+        "consistency": {
+          "title": "Consistent quality",
+          "description": "Reliable quality for demanding construction standards."
+        },
+        "flexibility": {
+          "title": "Flexible solutions",
+          "description": "Options for a wide range of design needs."
+        },
+        "capacity": {
+          "title": "High production capacity",
+          "description": "Reliable supply and on-time delivery."
+        }
       }
     },
     "applications": {
@@ -106,10 +125,9 @@
       "title": "Concrete made for real projects",
       "action": "See our projects",
       "items": {
-        "commercial": "Commercial architecture",
-        "landscape": "Landscape and public spaces",
-        "industrial": "Industrial facilities",
-        "residential": "Residential development"
+        "giga": "Gigamall Shopping Center",
+        "lixil": "Lixil Factory",
+        "olympus": "Olympus Factory"
       }
     },
     "contact": {

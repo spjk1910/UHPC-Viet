@@ -81,7 +81,7 @@ function Header() {
         </Link>
 
         {/* Desktop navigation */}
-        <nav className="hidden h-full items-center gap-10 lg:flex">
+        <nav className="hidden h-full items-center gap-10 xl:flex">
 
           <NavLink to="/" end className={navLinkClass}>
             {t('navigation.home')}
@@ -144,7 +144,7 @@ function Header() {
         </nav>
 
         {/* Right actions */}
-        <div className="hidden shrink-0 items-center gap-6 lg:flex">
+        <div className="hidden shrink-0 items-center gap-6 xl:flex">
 
           <LanguageSwitcher />
 
@@ -170,7 +170,7 @@ function Header() {
         </div>
 
         {/* Mobile controls */}
-        <div className="flex items-center gap-3 lg:hidden">
+        <div className="flex items-center gap-3 xl:hidden">
           <LanguageSwitcher />
           <button
             type="button"
@@ -199,7 +199,7 @@ function Header() {
       {mobileMenuOpen && (
         <nav
           id="mobile-navigation"
-          className="border-t border-gray-100 bg-white py-3 shadow-lg lg:hidden"
+          className="border-t border-gray-100 bg-white py-3 shadow-lg xl:hidden"
         >
           <div className="site-container flex flex-col gap-1">
             <NavLink
@@ -225,11 +225,18 @@ function Header() {
               {t('navigation.products')}
             </NavLink>
             <NavLink
-              to="/news"
+              to="/projects"
               className={mobileNavLinkClass}
               onClick={() => setMobileMenuOpen(false)}
             >
-              {t('navigation.news')}
+              {t('navigation.project')}
+            </NavLink>
+            <NavLink
+              to="/catalogue"
+              className={mobileNavLinkClass}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {t('navigation.catalogue')}
             </NavLink>
             <NavLink
               to="/contact"
