@@ -21,6 +21,38 @@ class ProductImageStorageServiceTest {
     }
 
     @Test
+    void extractsAppGeneratedImageObjectFromSameOriginPath() {
+        String objectName = "9c02fb93-c9f0-49d5-b7a5-04c1248c2c75.webp";
+
+        assertEquals(
+                objectName,
+                ProductImageStorageService.managedObjectName(
+                        "/api/products/images/" + objectName, PUBLIC_URL, BUCKET));
+    }
+
+    @Test
+    void recognizesLegacyBucketUrlsAfterThePublicHostChanges() {
+        String objectName = "9c02fb93-c9f0-49d5-b7a5-04c1248c2c75.webp";
+        String legacyImageUrl = "http://192.168.102.11:9000/" + BUCKET + "/" + objectName;
+
+        assertEquals(
+                objectName,
+                ProductImageStorageService.managedObjectName(
+                        legacyImageUrl, "http://localhost:9000", BUCKET));
+    }
+
+    @Test
+    void rewritesLegacyBucketUrlsToSameOriginImagePaths() {
+        String objectName = "9c02fb93-c9f0-49d5-b7a5-04c1248c2c75.webp";
+        ProductImageStorageService storage = new ProductImageStorageService(
+                PUBLIC_URL, "admin", "admin-secret", "upload", "upload-secret", BUCKET, PUBLIC_URL);
+
+        assertEquals(
+                "/api/products/images/" + objectName,
+                storage.toPublicImagePath(PUBLIC_URL + "/" + BUCKET + "/" + objectName));
+    }
+
+    @Test
     void refusesToDeleteImagesOutsideConfiguredBucket() {
         assertNull(ProductImageStorageService.managedObjectName(
                 "https://images.example.com/product.png", PUBLIC_URL, BUCKET));

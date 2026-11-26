@@ -281,7 +281,7 @@ public class ProductService {
                 product.getShortAdvantage(),
                 product.getDescription(),
                 product.getGuide(),
-                product.getImageUrl(),
+                productImageStorageService.toPublicImagePath(product.getImageUrl()),
                 product.isMultipleVariant(),
                 product.getSelectionName(),
                 product.getModels().stream()
@@ -300,7 +300,7 @@ public class ProductService {
                 localizedObject(product.getShortAdvantage(), locale),
                 localizedValue(product.getDescription(), locale),
                 localizedValue(product.getGuide(), locale),
-                product.getImageUrl(),
+                productImageStorageService.toPublicImagePath(product.getImageUrl()),
                 product.isMultipleVariant(),
                 product.getSelectionName(),
                 product.getModels().stream().map(this::mapModel).toList());

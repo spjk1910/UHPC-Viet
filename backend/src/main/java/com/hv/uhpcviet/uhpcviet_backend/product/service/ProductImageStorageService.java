@@ -1,23 +1,29 @@
 package com.hv.uhpcviet.uhpcviet_backend.product.service;
 
 import com.hv.uhpcviet.uhpcviet_backend.exception.BadRequestException;
+import com.hv.uhpcviet.uhpcviet_backend.exception.ResourceNotFoundException;
 import io.minio.BucketExistsArgs;
+import io.minio.GetObjectArgs;
 import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
 import io.minio.RemoveObjectArgs;
 import io.minio.SetBucketPolicyArgs;
+import io.minio.errors.ErrorResponseException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayInputStream;
+import java.io.OutputStream;
+import java.net.URI;
 import java.util.UUID;
 
 @Service
 public class ProductImageStorageService {
 
     private static final long MAX_IMAGE_SIZE_BYTES = 10L * 1024 * 1024;
+    private static final String PRODUCT_IMAGE_PATH = "/api/products/images/";
 
     private final MinioClient adminClient;
     private final MinioClient uploadClient;
@@ -68,11 +74,51 @@ public class ProductImageStorageService {
                             .contentType(image.getContentType())
                             .build());
 
-            return publicUrl + "/" + bucket + "/" + objectName;
+            return PRODUCT_IMAGE_PATH + objectName;
         } catch (BadRequestException exception) {
             throw exception;
         } catch (Exception exception) {
             throw new IllegalStateException("Unable to store product image in MinIO", exception);
+        }
+    }
+
+    public String toPublicImagePath(String imageUrl) {
+        String objectName = managedObjectName(imageUrl, publicUrl, bucket);
+        return objectName == null ? imageUrl : PRODUCT_IMAGE_PATH + objectName;
+    }
+
+    public String getImageContentType(String objectName) {
+        if (!isValidObjectName(objectName)) {
+            throw new ResourceNotFoundException("Product image not found");
+        }
+
+        if (objectName.endsWith(".jpg")) {
+            return "image/jpeg";
+        }
+        if (objectName.endsWith(".png")) {
+            return "image/png";
+        }
+        return "image/webp";
+    }
+
+    public void copyImageTo(String objectName, OutputStream outputStream) {
+        if (!isValidObjectName(objectName)) {
+            throw new ResourceNotFoundException("Product image not found");
+        }
+
+        try (var image = adminClient.getObject(
+                GetObjectArgs.builder()
+                        .bucket(bucket)
+                        .object(objectName)
+                        .build())) {
+            image.transferTo(outputStream);
+        } catch (ErrorResponseException exception) {
+            if ("NoSuchKey".equals(exception.errorResponse().code())) {
+                throw new ResourceNotFoundException("Product image not found");
+            }
+            throw new IllegalStateException("Unable to read product image from MinIO", exception);
+        } catch (Exception exception) {
+            throw new IllegalStateException("Unable to read product image from MinIO", exception);
         }
     }
 
@@ -98,28 +144,62 @@ public class ProductImageStorageService {
             return null;
         }
 
-        String prefix = publicUrl.replaceAll("/+$", "") + "/" + bucket + "/";
-        if (!imageUrl.startsWith(prefix)) {
-            return null;
+        String objectName;
+        if (imageUrl.startsWith(PRODUCT_IMAGE_PATH)) {
+            objectName = imageUrl.substring(PRODUCT_IMAGE_PATH.length());
+        } else {
+            String prefix = publicUrl.replaceAll("/+$", "") + "/" + bucket + "/";
+            if (imageUrl.startsWith(prefix)) {
+                objectName = imageUrl.substring(prefix.length());
+            } else {
+                objectName = objectNameFromBucketUrl(imageUrl, bucket);
+            }
         }
 
-        String objectName = imageUrl.substring(prefix.length());
+        return isValidObjectName(objectName) ? objectName : null;
+    }
+
+    private static String objectNameFromBucketUrl(String imageUrl, String bucket) {
+        try {
+            URI uri = URI.create(imageUrl);
+            String scheme = uri.getScheme();
+            if (uri.getHost() == null
+                    || (!"http".equalsIgnoreCase(scheme) && !"https".equalsIgnoreCase(scheme))) {
+                return null;
+            }
+
+            String bucketPath = "/" + bucket + "/";
+            String path = uri.getPath();
+            int bucketIndex = path == null ? -1 : path.lastIndexOf(bucketPath);
+            return bucketIndex < 0
+                    ? null
+                    : path.substring(bucketIndex + bucketPath.length());
+        } catch (IllegalArgumentException exception) {
+            return null;
+        }
+    }
+
+    private static boolean isValidObjectName(String objectName) {
+        if (objectName == null || objectName.isBlank()) {
+            return false;
+        }
+
         int extensionIndex = objectName.lastIndexOf('.');
         if (extensionIndex < 0 || objectName.indexOf('/', extensionIndex) >= 0
                 || objectName.indexOf('\\', extensionIndex) >= 0) {
-            return null;
+            return false;
         }
 
         String extension = objectName.substring(extensionIndex);
         if (!extension.equals(".jpg") && !extension.equals(".png") && !extension.equals(".webp")) {
-            return null;
+            return false;
         }
 
         String uuid = objectName.substring(0, extensionIndex);
         try {
-            return UUID.fromString(uuid).toString().equals(uuid) ? objectName : null;
+            return UUID.fromString(uuid).toString().equals(uuid);
         } catch (IllegalArgumentException exception) {
-            return null;
+            return false;
         }
     }
 
