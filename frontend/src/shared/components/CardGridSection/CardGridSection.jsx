@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
-import ArrowRightIcon from '../../../assets/icons/ArrowRightIcon'
 import ImagePlaceholder from '../ImagePlaceholder/ImagePlaceholder'
 
 function CardGridSection({
@@ -82,7 +81,7 @@ function CardGridSection({
         <span className="font-semibold text-dark">{item.title}</span>
 
         <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-600">
-          <ArrowRightIcon className="h-5 w-5" />
+          →
         </span>
       </div>
     </Link>
