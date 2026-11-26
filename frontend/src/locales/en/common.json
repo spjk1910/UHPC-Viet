@@ -36,6 +36,33 @@
     "message": "Tell us about your project",
     "submit": "Send inquiry"
   },
+  "projectsPage": {
+    "eyebrow": "Our projects",
+    "title": "Projects",
+    "description": "Explore selected projects featuring UHPC-Việt concrete solutions.",
+    "fields": {
+      "location": "Location",
+      "contractor": "Contractor",
+      "products": "Products"
+    },
+    "items": {
+      "giga": {
+        "location": "Thu Duc, Ho Chi Minh City",
+        "contractor": "Thuan Viet",
+        "products": "Concrete spacers"
+      },
+      "lixil": {
+        "location": "Dong Nai, Ho Chi Minh City",
+        "contractor": "Japan",
+        "products": "Concrete spacers, drainage covers"
+      },
+      "olympus": {
+        "location": "Dong Nai, Ho Chi Minh City",
+        "contractor": "Japan",
+        "products": "Concrete spacers, drainage covers"
+      }
+    }
+  },
   "productsPage": {
     "eyebrow": "Our products",
     "title": "Products",

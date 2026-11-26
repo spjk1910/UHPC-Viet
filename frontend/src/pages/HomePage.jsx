@@ -25,7 +25,7 @@ function HomePage() {
   ].map(({ key, image }) => ({
     key,
     title: t(`home.applications.items.${key}`),
-    to: '/projects',
+    to: `/projects#${key}`,
     image,
   }))
   const aboutHighlights = [

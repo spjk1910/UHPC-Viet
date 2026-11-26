@@ -36,6 +36,33 @@
     "message": "Nội dung cần tư vấn",
     "submit": "Gửi yêu cầu"
   },
+  "projectsPage": {
+    "eyebrow": "Dự án của chúng tôi",
+    "title": "Dự án tiêu biểu",
+    "description": "Khám phá một số dự án tiêu biểu sử dụng giải pháp bê tông UHPC-Việt.",
+    "fields": {
+      "location": "Địa điểm",
+      "contractor": "Nhà thầu",
+      "products": "Sản phẩm"
+    },
+    "items": {
+      "giga": {
+        "location": "Thủ Đức – TP.HCM",
+        "contractor": "Thuận Việt",
+        "products": "Viên kê bê tông"
+      },
+      "lixil": {
+        "location": "Đồng Nai – TP.HCM",
+        "contractor": "Nhật Bản",
+        "products": "Viên kê bê tông, nắp đan thoát nước"
+      },
+      "olympus": {
+        "location": "Đồng Nai – TP.HCM",
+        "contractor": "Nhật Bản",
+        "products": "Viên kê bê tông, nắp đan thoát nước"
+      }
+    }
+  },
   "productsPage": {
     "eyebrow": "Sản phẩm của chúng tôi",
     "title": "Sản phẩm",
