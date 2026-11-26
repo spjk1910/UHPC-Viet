@@ -19,7 +19,7 @@ function ProductsPage() {
     return products.filter((product) => {
       const matchesCategory = !selectedCategory || product.categorySlug === selectedCategory
       const matchesSearch = !normalizedSearch
-        || product.name.toLowerCase().includes(normalizedSearch)
+        || String(product.name ?? '').toLowerCase().includes(normalizedSearch)
 
       return matchesCategory && matchesSearch
     })

@@ -7,12 +7,58 @@ import ProductCard from '../components/ProductCard'
 import ImagePlaceholder from '../../../shared/components/ImagePlaceholder/ImagePlaceholder'
 
 function ProductDetailPage() {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { id: slug } = useParams()
   const [activeTab, setActiveTab] = useState('description')
   const [isQuoteOpen, setIsQuoteOpen] = useState(false)
+  const [selectedModelSelection, setSelectedModelSelection] = useState({
+    productSlug: '',
+    modelId: '',
+  })
+
   const { products, isLoading, error } = useProductCatalog()
   const product = products.find((item) => item.slug === slug)
+
+  const models = product?.models ?? []
+
+  const selectedModelId =
+    selectedModelSelection.productSlug === product?.slug
+      ? selectedModelSelection.modelId
+      : ''
+  const selectedModel =
+    models.find((model) => model.modelId === selectedModelId) ?? models[0]
+
+  const getLocalizedValue = (value) => {
+    if (!value) return ''
+
+    if (typeof value === 'string') return value
+
+    const language = i18n.language?.split('-')[0]
+    if (typeof value !== 'object') return String(value)
+
+    const localizedValue = value[language] ?? value.vi ?? value.en
+    return localizedValue == null ? '' : String(localizedValue)
+  }
+
+  const getLocalizedData = (value) => {
+    if (!value || typeof value !== 'object') return value
+
+    const language = i18n.language?.split('-')[0]
+    return value[language] ?? value.vi ?? value.en ?? value
+  }
+
+  const getModelName = (model) => {
+    return getLocalizedValue(model?.productName) || model?.modelId || ''
+  }
+
+  const selectionName = getLocalizedValue(product?.selectionName)
+  const selectedVariant = getLocalizedData(selectedModel?.variant)
+  const advantages = Array.isArray(product?.shortAdvantage)
+    ? product.shortAdvantage
+    : product?.shortAdvantage
+      ? [product.shortAdvantage]
+      : []
+
   const relatedProducts = products
     .filter((item) => item.slug !== slug && item.categorySlug === product?.categorySlug)
     .slice(0, 4)
@@ -41,17 +87,17 @@ function ProductDetailPage() {
           </Link>
 
           <div className="mt-8 grid items-center gap-10 md:grid-cols-2 lg:gap-16">
-            <div className="overflow-hidden rounded-3xl bg-gray-100">
+            <div className="aspect-4/3 overflow-hidden rounded-3xl bg-gray-100">
               {product.imageUrl ? (
                 <img
                   src={product.imageUrl}
                   alt={product.name}
                   loading="eager"
                   decoding="async"
-                  className="aspect-4/3 h-full w-full object-cover"
+                  className="h-full w-full object-contain"
                 />
               ) : (
-                <ImagePlaceholder label={t('productDetail.imagePlaceholder')} className="min-h-80" />
+                <ImagePlaceholder label={t('productDetail.imagePlaceholder')} className="h-full min-h-0" />
               )}
             </div>
 
@@ -59,20 +105,62 @@ function ProductDetailPage() {
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600">
                 {product.categoryName}
               </p>
+
               <h1 className="mt-3 text-4xl font-extrabold text-dark sm:text-5xl">
                 {product.name}
               </h1>
+
               <p className="mt-5 leading-7 text-concrete">
-                {product.description ?? t('productDetail.description', { product: product.name })}
+                {product.shortDescription}
               </p>
-              <ul className="mt-6 space-y-3 text-sm text-dark">
-                {['performance', 'durable', 'versatile'].map((key) => (
-                  <li key={key} className="flex items-center gap-3">
-                    <span className="text-brand-600">●</span>
-                    {t(`productDetail.highlights.${key}`)}
-                  </li>
-                ))}
-              </ul>
+
+              {/* Model / Variant Selection */}
+              {product.multipleVariant && models.length > 0 && (
+                <div className="mt-6">
+                  <p className="mb-3 text-sm font-bold text-dark">
+                    {selectionName}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2">
+                    {models.map((model) => {
+                      const isSelected = selectedModel?.modelId === model.modelId
+
+                      return (
+                        <button
+                          key={model.modelId}
+                          type="button"
+                          onClick={() =>
+                            setSelectedModelSelection({
+                              productSlug: product.slug,
+                              modelId: model.modelId,
+                            })
+                          }
+                          aria-pressed={isSelected}
+                          className={`rounded-lg border px-5 py-2.5 text-sm font-semibold transition-colors ${
+                            isSelected
+                              ? 'border-brand-600 bg-brand-50 text-brand-700'
+                              : 'border-gray-200 bg-white text-dark hover:border-brand-500'
+                          }`}
+                        >
+                          {getModelName(model)}
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {advantages.length > 0 && (
+                <ul className="mt-6 space-y-3 text-sm text-dark">
+                  {advantages.map((advantage, index) => (
+                    <li key={`${advantage}-${index}`} className="flex items-start gap-3">
+                      <span className="text-brand-600">●</span>
+                      <span>{String(advantage)}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
               <button
                 type="button"
                 onClick={() => setIsQuoteOpen(true)}
@@ -108,20 +196,43 @@ function ProductDetailPage() {
             </div>
 
             <div className="min-h-36 p-5 text-sm leading-6 text-concrete" role="tabpanel">
-              {activeTab === 'description' && <p>{t('productDetail.detailText')}</p>}
+              {activeTab === 'description' && <p>{product.description}</p>}
 
               {activeTab === 'specifications' && (
-                <div className="space-y-3">
-                  {['size', 'finish', 'application'].map((key) => (
-                    <div key={key} className="flex items-start justify-between gap-4 border-b border-gray-100 pb-3 last:border-0 last:pb-0">
-                      <span>{t(`productDetail.specs.${key}`)}</span>
-                      <span className="text-right font-medium text-dark">{t('productDetail.specValue')}</span>
-                    </div>
-                  ))}
-                </div>
+                selectedVariant && typeof selectedVariant === 'object' && !Array.isArray(selectedVariant) ? (
+                  <div className="space-y-3">
+                    {Object.entries(selectedVariant).map(([key, value]) => {
+                      const localizedValue = getLocalizedData(value)
+
+                      return (
+                        <div
+                          key={key}
+                          className="flex items-start justify-between gap-4 border-b border-gray-100 pb-3 last:border-0 last:pb-0"
+                        >
+                          <span>{t(`productDetail.specs.${key}`, key)}</span>
+                          <span className="text-right font-medium text-dark">
+                            {localizedValue !== null && typeof localizedValue === 'object'
+                              ? JSON.stringify(localizedValue)
+                              : String(localizedValue ?? '')}
+                          </span>
+                        </div>
+                      )
+                    })}
+                  </div>
+                ) : Array.isArray(selectedVariant) ? (
+                  <ul className="space-y-2">
+                    {selectedVariant.map((value, index) => (
+                      <li key={`${value}-${index}`}>{String(value)}</li>
+                    ))}
+                  </ul>
+                ) : selectedVariant ? (
+                  <p>{String(selectedVariant)}</p>
+                ) : (
+                  <p>{t('productDetail.specValue')}</p>
+                )
               )}
 
-              {activeTab === 'usage' && <p>{t('productDetail.detailText')}</p>}
+              {activeTab === 'usage' && <p>{product.guide}</p>}
             </div>
           </div>
         </div>
@@ -163,6 +274,7 @@ function ProductDetailPage() {
                   {t('productDetail.requestQuote')}
                 </h2>
               </div>
+
               <button
                 type="button"
                 onClick={() => setIsQuoteOpen(false)}
@@ -178,22 +290,26 @@ function ProductDetailPage() {
                 {t('productDetail.selectedProduct')}
                 <input
                   readOnly
-                  value={product.name}
+                  value={`${product.name}${selectedModel ? ` - ${getModelName(selectedModel)}` : ''}`}
                   className="mt-2 w-full rounded-lg border border-brand-200 bg-brand-50 px-4 py-3 text-brand-800 outline-none"
                 />
               </label>
+
               <label className="block text-sm font-medium text-dark">
                 {t('contactPage.name')} <span className="text-red-500">*</span>
                 <input required name="name" type="text" className="mt-2 w-full rounded-lg border border-gray-200 px-4 py-3 outline-none focus:border-brand-500" />
               </label>
+
               <label className="block text-sm font-medium text-dark">
                 {t('contactPage.phone')} <span className="text-red-500">*</span>
                 <input required name="phone" type="tel" className="mt-2 w-full rounded-lg border border-gray-200 px-4 py-3 outline-none focus:border-brand-500" />
               </label>
+
               <label className="block text-sm font-medium text-dark">
                 {t('contactPage.message')}
                 <textarea name="message" className="mt-2 min-h-28 w-full resize-y rounded-lg border border-gray-200 px-4 py-3 outline-none focus:border-brand-500" />
               </label>
+
               <button type="submit" className="w-full rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700">
                 {t('contactPage.submit')} →
               </button>

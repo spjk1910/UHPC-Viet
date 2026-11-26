@@ -16,7 +16,7 @@ function useProductCatalog() {
       products: [],
     }))
   }, [i18n, locale])
-  const [apiCategories, setApiCategories] = useState([])
+  const [apiProducts, setApiProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
 
@@ -26,12 +26,12 @@ function useProductCatalog() {
     setError(null)
 
     getProductNavigation(locale, controller.signal)
-      .then((data) => setApiCategories(data.categories ?? []))
+      .then((data) => setApiProducts(data.products ?? []))
       .catch((requestError) => {
         if (requestError.name !== 'AbortError') {
           console.error('Failed to load product catalog:', requestError)
           setError(requestError)
-          setApiCategories([])
+          setApiProducts([])
         }
       })
       .finally(() => {
@@ -41,14 +41,15 @@ function useProductCatalog() {
     return () => controller.abort()
   }, [locale])
 
-  const categories = apiCategories.length > 0 ? apiCategories : fallbackCategories
-  const products = categories.flatMap((category) =>
-    (category.products ?? []).map((product) => ({
-      ...product,
-      categoryName: category.name,
-      categorySlug: category.slug,
-    }))
-  )
+  const products = apiProducts.map((product) => ({
+    ...product,
+    categorySlug: product.productType,
+    categoryName: i18n.t(`categories.${product.productType}`, product.productType),
+  }))
+  const categories = fallbackCategories.map((category) => ({
+    ...category,
+    products: products.filter((product) => product.categorySlug === category.slug),
+  }))
 
   return { categories, products, isLoading, error }
 }

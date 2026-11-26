@@ -1,9 +1,7 @@
-import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import logo from '../../../assets/images/logo/uhpc-viet_logo.png'
-import { getProductNavigation } from '../../../features/products/services/productService'
 import AddressIcon from '../../../assets/icons/AddressIcon'
 import EmailIcon from '../../../assets/icons/EmailIcon'
 import FacebookIcon from '../../../assets/icons/FacebookIcon'
@@ -17,36 +15,10 @@ function Footer() {
     ? 'en'
     : 'vi'
 
-  const fallbackCategories = useMemo(
-    () => {
-      const localizedCategories = i18n.getResource(locale, 'common', 'categories') ?? {}
-
-      return Object.entries(localizedCategories).map(
-        ([slug, name]) => ({ id: slug, slug, name })
-      )
-    },
-    [i18n, locale]
+  const localizedCategories = i18n.getResource(locale, 'common', 'categories') ?? {}
+  const categories = Object.entries(localizedCategories).map(
+    ([slug, name]) => ({ id: slug, slug, name })
   )
-
-  const [categories, setCategories] = useState(fallbackCategories)
-
-  useEffect(() => {
-    const controller = new AbortController()
-
-    getProductNavigation(locale, controller.signal)
-      .then((data) => {
-        const apiCategories = data.categories ?? []
-        setCategories(apiCategories.length > 0 ? apiCategories : fallbackCategories)
-      })
-      .catch((error) => {
-        if (error.name !== 'AbortError') {
-          console.error('Failed to load footer categories:', error)
-          setCategories(fallbackCategories)
-        }
-      })
-
-    return () => controller.abort()
-  }, [locale, fallbackCategories])
 
   const footerData = i18n.getResource(locale, 'common', 'footer') ?? {}
 

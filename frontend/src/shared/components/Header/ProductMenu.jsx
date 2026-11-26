@@ -2,15 +2,23 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
 function ProductMegaMenu({ categories, t }) {
+  const safeCategories = categories ?? []
   const [activeCategory, setActiveCategory] = useState(
-    categories[0]?.id
+    safeCategories[0]?.id
   )
 
-  const selectedCategory = categories.find(
+  const activeCategoryId = safeCategories.some(
     (category) => category.id === activeCategory
   )
+    ? activeCategory
+    : safeCategories[0]?.id
+  const selectedCategory = safeCategories.find(
+    (category) => category.id === activeCategoryId
+  )
+  const getCategoryName = (category) =>
+    t(`categories.${category.slug}`, category.name || category.slug)
 
-  if (!categories.length) return null
+  if (!safeCategories.length) return null
 
   return (
     <div className="absolute left-0 top-full z-50 w-full border-t border-gray-100 bg-white shadow-xl">
@@ -23,19 +31,19 @@ function ProductMegaMenu({ categories, t }) {
           </h3>
 
           <div className="flex flex-col gap-1">
-            {categories.map((category) => (
+            {safeCategories.map((category) => (
               <Link
                 key={category.id}
                 to={`/products?category=${category.slug}`}
                 onMouseEnter={() => setActiveCategory(category.id)}
                 onFocus={() => setActiveCategory(category.id)}
                 className={`flex items-center justify-between rounded-md px-4 py-3 text-sm font-semibold transition-colors ${
-                  activeCategory === category.id
+                  activeCategoryId === category.id
                     ? 'bg-brand-50 text-brand-700'
                     : 'text-dark hover:bg-gray-50'
                 }`}
               >
-                {category.name}
+                {getCategoryName(category)}
 
                 <span aria-hidden="true">→</span>
               </Link>
@@ -49,7 +57,7 @@ function ProductMegaMenu({ categories, t }) {
             <>
               <div className="mb-5 flex items-center justify-between">
                 <h3 className="text-lg font-bold text-dark">
-                  {selectedCategory.name}
+                  {getCategoryName(selectedCategory)}
                 </h3>
 
                 <Link
@@ -63,20 +71,20 @@ function ProductMegaMenu({ categories, t }) {
               <div className="grid grid-cols-3 gap-5">
                 {selectedCategory.products?.map((product) => (
                   <Link
-                    key={product.id}
+                    key={product.id ?? product.slug}
                     to={`/products/${product.slug}`}
                     className="group"
                   >
                     <div className="aspect-4/3 overflow-hidden rounded-lg bg-gray-100">
                       <img
-                        src={product.imageUrl}
-                        alt={product.name}
+                        src={product.imageUrl || undefined}
+                        alt={product.name || product.slug}
                         className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
 
                     <h4 className="mt-3 text-sm font-semibold text-dark transition-colors group-hover:text-brand-700">
-                      {product.name}
+                      {product.name || product.slug}
                     </h4>
                   </Link>
                 ))}
