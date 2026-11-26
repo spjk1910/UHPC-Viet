@@ -7,6 +7,13 @@
     "catalogue": "Danh Mục Sản Phẩm",
     "contact": "Liên Hệ"
   },
+  "notFoundPage": {
+    "eyebrow": "Lỗi 404",
+    "title": "Không tìm thấy trang này",
+    "description": "Trang có thể đã được di chuyển hoặc đường dẫn không chính xác. Bạn có thể quay về trang chủ hoặc khám phá các sản phẩm của chúng tôi.",
+    "homeAction": "Về trang chủ",
+    "productsAction": "Xem sản phẩm"
+  },
   "productMenu": {
     "categories": "Danh mục sản phẩm",
     "viewAll": "Xem tất cả sản phẩm",

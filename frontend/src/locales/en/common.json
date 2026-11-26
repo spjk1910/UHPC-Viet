@@ -7,6 +7,13 @@
     "catalogue": "Catalogue",
     "contact": "Contact"
   },
+  "notFoundPage": {
+    "eyebrow": "Error 404",
+    "title": "We can't find this page",
+    "description": "The page may have moved, or the link may be incorrect. Head back home or explore our products.",
+    "homeAction": "Go to homepage",
+    "productsAction": "Browse products"
+  },
   "productMenu": {
     "categories": "Product Categories",
     "viewAll": "View All Products",
