@@ -61,7 +61,7 @@ public class Product {
     @Column(name = "selection_name", columnDefinition = "jsonb")
     private Map<String, Object> selectionName;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductModel> models = new ArrayList<>();
 
     protected Product() {
@@ -143,6 +143,11 @@ public class Product {
 
     public void addModel(ProductModel model) {
         models.add(model);
+    }
+
+    public void replaceModels(List<ProductModel> replacement) {
+        models.clear();
+        models.addAll(replacement);
     }
 
     public void setProductType(ProductType productType) {

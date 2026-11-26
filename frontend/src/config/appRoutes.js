@@ -6,4 +6,6 @@ export const APP_ROUTES = Object.freeze({
   projects: '/projects',
   catalogue: '/catalogue',
   contact: '/contact',
+  admin: '/admin',
+  adminDashboard: '/admin/dashboard',
 })

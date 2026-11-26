@@ -58,4 +58,12 @@ public class ProductModel {
     public Map<String, Object> getVariant() {
         return variant;
     }
+
+    public void setProductName(Map<String, Object> productName) {
+        this.productName = productName;
+    }
+
+    public void setVariant(Map<String, Object> variant) {
+        this.variant = variant;
+    }
 }

@@ -5,6 +5,7 @@ import io.minio.BucketExistsArgs;
 import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
+import io.minio.RemoveObjectArgs;
 import io.minio.SetBucketPolicyArgs;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -72,6 +73,53 @@ public class ProductImageStorageService {
             throw exception;
         } catch (Exception exception) {
             throw new IllegalStateException("Unable to store product image in MinIO", exception);
+        }
+    }
+
+    public void deleteIfManaged(String imageUrl) {
+        String objectName = managedObjectName(imageUrl, publicUrl, bucket);
+        if (objectName == null) {
+            return;
+        }
+
+        try {
+            adminClient.removeObject(
+                    RemoveObjectArgs.builder()
+                            .bucket(bucket)
+                            .object(objectName)
+                            .build());
+        } catch (Exception exception) {
+            throw new IllegalStateException("Unable to delete product image from MinIO", exception);
+        }
+    }
+
+    static String managedObjectName(String imageUrl, String publicUrl, String bucket) {
+        if (imageUrl == null || imageUrl.isBlank()) {
+            return null;
+        }
+
+        String prefix = publicUrl.replaceAll("/+$", "") + "/" + bucket + "/";
+        if (!imageUrl.startsWith(prefix)) {
+            return null;
+        }
+
+        String objectName = imageUrl.substring(prefix.length());
+        int extensionIndex = objectName.lastIndexOf('.');
+        if (extensionIndex < 0 || objectName.indexOf('/', extensionIndex) >= 0
+                || objectName.indexOf('\\', extensionIndex) >= 0) {
+            return null;
+        }
+
+        String extension = objectName.substring(extensionIndex);
+        if (!extension.equals(".jpg") && !extension.equals(".png") && !extension.equals(".webp")) {
+            return null;
+        }
+
+        String uuid = objectName.substring(0, extensionIndex);
+        try {
+            return UUID.fromString(uuid).toString().equals(uuid) ? objectName : null;
+        } catch (IllegalArgumentException exception) {
+            return null;
         }
     }
 

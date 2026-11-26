@@ -13,6 +13,9 @@ import ProductsPage from '../features/products/pages/ProductsPage'
 import ProductDetailPage from '../features/products/pages/ProductDetailPage'
 import ContactPage from '../features/contact/pages/ContactPage'
 import ProjectsPage from '../features/projects/pages/ProjectsPage'
+import AdminSignInPage from '../features/admin/pages/AdminSignInPage'
+import AdminDashboardPage from '../features/admin/pages/AdminDashboardPage'
+import AdminRoute from '../features/admin/components/AdminRoute'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -38,6 +41,16 @@ export function AppRouter() {
           <Route path={APP_ROUTES.catalogue} element={<CataloguePage/>} />
           <Route path={APP_ROUTES.contact} element={<ContactPage />} />
         </Route>
+
+        <Route path={APP_ROUTES.admin} element={<AdminSignInPage />} />
+        <Route
+          path={APP_ROUTES.adminDashboard}
+          element={
+            <AdminRoute>
+              <AdminDashboardPage />
+            </AdminRoute>
+          }
+        />
 
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

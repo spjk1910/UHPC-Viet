@@ -58,9 +58,15 @@ public class ProductController {
     @PutMapping("/{slug}")
     public ProductResponse updateProduct(
             @PathVariable String slug,
-            @RequestBody ProductResponse product,
+            @Valid @RequestBody ProductCreateRequest product,
             @RequestParam(defaultValue = "en") String locale
     ) {
         return productService.updateProduct(slug, product, locale);
+    }
+
+    @DeleteMapping("/{slug}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteProduct(@PathVariable String slug) {
+        productService.deleteProduct(slug);
     }
 }

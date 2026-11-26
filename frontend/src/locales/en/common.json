@@ -51,6 +51,8 @@
     "notFound": "Product not found",
     "back": "Back to products",
     "imagePlaceholder": "Product image placeholder",
+    "enlargeImage": "Enlarge product image",
+    "closeImage": "Close enlarged image",
     "requestQuote": "Request a quote",
     "selectedProduct": "Product name",
     "closeQuote": "Close quote form",

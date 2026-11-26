@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
@@ -10,11 +10,36 @@ function ProductDetailPage() {
   const { t, i18n } = useTranslation()
   const { id: slug } = useParams()
   const [activeTab, setActiveTab] = useState('description')
+  const [isImageOpen, setIsImageOpen] = useState(false)
   const [isQuoteOpen, setIsQuoteOpen] = useState(false)
+  const imageCloseButtonRef = useRef(null)
   const [selectedModelSelection, setSelectedModelSelection] = useState({
     productSlug: '',
     modelId: '',
   })
+
+  useEffect(() => {
+    if (!isImageOpen) return undefined
+
+    const previousOverflow = document.body.style.overflow
+    const previouslyFocusedElement = document.activeElement
+    document.body.style.overflow = 'hidden'
+    imageCloseButtonRef.current?.focus()
+
+    function handleKeyDown(event) {
+      if (event.key === 'Escape') setIsImageOpen(false)
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', handleKeyDown)
+      if (previouslyFocusedElement instanceof HTMLElement
+          && document.contains(previouslyFocusedElement)) {
+        previouslyFocusedElement.focus()
+      }
+    }
+  }, [isImageOpen])
 
   const { products, isLoading, error } = useProductCatalog()
   const product = products.find((item) => item.slug === slug)
@@ -87,15 +112,22 @@ function ProductDetailPage() {
           </Link>
 
           <div className="mt-8 grid items-center gap-10 md:grid-cols-2 lg:gap-16">
-            <div className="aspect-4/3 overflow-hidden rounded-3xl bg-gray-100">
+            <div className="aspect-4/3 overflow-hidden rounded-3xl">
               {product.imageUrl ? (
-                <img
-                  src={product.imageUrl}
-                  alt={product.name}
-                  loading="eager"
-                  decoding="async"
-                  className="h-full w-full object-contain"
-                />
+                <button
+                  type="button"
+                  onClick={() => setIsImageOpen(true)}
+                  aria-label={t('productDetail.enlargeImage')}
+                  className="h-full w-full cursor-zoom-in border-0 bg-transparent p-0"
+                >
+                  <img
+                    src={product.imageUrl}
+                    alt={product.name}
+                    loading="eager"
+                    decoding="async"
+                    className="h-full w-full object-contain"
+                  />
+                </button>
               ) : (
                 <ImagePlaceholder label={t('productDetail.imagePlaceholder')} className="h-full min-h-0" />
               )}
@@ -249,6 +281,33 @@ function ProductDetailPage() {
             </div>
           </div>
         </section>
+      )}
+
+      {isImageOpen && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label={t('productDetail.enlargeImage')}
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setIsImageOpen(false)
+          }}
+        >
+          <button
+            ref={imageCloseButtonRef}
+            type="button"
+            onClick={() => setIsImageOpen(false)}
+            aria-label={t('productDetail.closeImage')}
+            className="absolute right-4 top-4 rounded-full bg-white px-4 py-2 text-3xl leading-none text-dark shadow-lg hover:bg-gray-100"
+          >
+            ×
+          </button>
+          <img
+            src={product.imageUrl}
+            alt={product.name}
+            className="max-h-[92vh] max-w-[96vw] object-contain"
+          />
+        </div>
       )}
 
       {isQuoteOpen && (

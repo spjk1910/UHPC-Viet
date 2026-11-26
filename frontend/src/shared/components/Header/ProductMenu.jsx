@@ -75,11 +75,11 @@ function ProductMegaMenu({ categories, t }) {
                     to={`/products/${product.slug}`}
                     className="group"
                   >
-                    <div className="aspect-4/3 overflow-hidden rounded-lg bg-gray-100">
+                    <div className="aspect-4/3 overflow-hidden rounded-lg">
                       <img
                         src={product.imageUrl || undefined}
                         alt={product.name || product.slug}
-                        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        className="h-full w-full object-contain"
                       />
                     </div>
 
