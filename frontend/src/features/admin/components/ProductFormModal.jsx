@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 import {
   createProduct,
@@ -319,11 +319,39 @@ function ProductFormModal({ product, products, onClose, onSaved, onProductsChang
   const [saveStatus, setSaveStatus] = useState('')
   const [savedSlug, setSavedSlug] = useState(product?.slug ?? null)
   const isEditing = Boolean(product || savedSlug)
+  const formRef = useRef(null)
+  const jsonEditorRef = useRef(null)
+
+  const moveToIssue = useCallback((target) => {
+    if (!target) return
+
+    const formElement = formRef.current
+    if (formElement?.contains(target)) {
+      const formBounds = formElement.getBoundingClientRect()
+      const targetBounds = target.getBoundingClientRect()
+      formElement.scrollTo({
+        top: formElement.scrollTop + targetBounds.top - formBounds.top - 96,
+        behavior: 'smooth',
+      })
+    } else {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' })
+    }
+
+    target.focus?.({ preventScroll: true })
+  }, [])
 
   useEffect(() => {
     if (!imagePreview.startsWith('blob:')) return undefined
     return () => URL.revokeObjectURL(imagePreview)
   }, [imagePreview])
+
+  useLayoutEffect(() => {
+    const target = jsonError
+      ? jsonEditorRef.current
+      : formRef.current?.querySelector('[aria-invalid="true"]:not(:disabled)')
+
+    moveToIssue(target)
+  }, [fieldErrors, jsonError, moveToIssue])
 
   function replaceForm(nextForm) {
     setForm(nextForm)
@@ -496,6 +524,12 @@ function ProductFormModal({ product, products, onClose, onSaved, onProductsChang
     }
   }
 
+  function handleInvalid(event) {
+    setError('Please complete the required fields before saving.')
+    const target = event.target
+    requestAnimationFrame(() => moveToIssue(target))
+  }
+
   const productIdDisabled = Boolean(product || savedSlug)
 
   return (
@@ -527,8 +561,21 @@ function ProductFormModal({ product, products, onClose, onSaved, onProductsChang
         </header>
 
         <div className="grid min-h-0 flex-1 lg:grid-cols-[minmax(0,1.2fr)_minmax(360px,0.8fr)]">
-          <form onSubmit={handleSave} className="min-h-0 space-y-5 overflow-y-auto p-5">
-            {error && <p role="alert" className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>}
+          <form ref={formRef} onSubmit={handleSave} onInvalidCapture={handleInvalid} className="min-h-0 space-y-5 overflow-y-auto p-5">
+            {error && (
+              <div role="alert" className="sticky top-0 z-10 flex items-center justify-between gap-3 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700 shadow-sm">
+                <span>{error}</span>
+                <button
+                  type="button"
+                  onClick={() => moveToIssue(jsonError
+                    ? jsonEditorRef.current
+                    : formRef.current?.querySelector('[aria-invalid="true"]:not(:disabled)'))}
+                  className="shrink-0 font-semibold underline underline-offset-2"
+                >
+                  Go to error
+                </button>
+              </div>
+            )}
 
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="block text-sm font-semibold" htmlFor="product-id">
@@ -735,6 +782,7 @@ function ProductFormModal({ product, products, onClose, onSaved, onProductsChang
             <p className="mt-1 text-xs text-concrete">Edit this JSON directly; valid changes sync to the form.</p>
             {jsonError && <p role="alert" className="mt-2 text-xs text-red-700">{jsonError}</p>}
             <textarea
+              ref={jsonEditorRef}
               id="product-json"
               value={jsonText}
               onChange={handleJsonChange}
