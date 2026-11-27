@@ -524,12 +524,6 @@ function ProductFormModal({ product, products, onClose, onSaved, onProductsChang
     }
   }
 
-  function handleInvalid(event) {
-    setError('Please complete the required fields before saving.')
-    const target = event.target
-    requestAnimationFrame(() => moveToIssue(target))
-  }
-
   const productIdDisabled = Boolean(product || savedSlug)
 
   return (
@@ -561,7 +555,7 @@ function ProductFormModal({ product, products, onClose, onSaved, onProductsChang
         </header>
 
         <div className="grid min-h-0 flex-1 lg:grid-cols-[minmax(0,1.2fr)_minmax(360px,0.8fr)]">
-          <form ref={formRef} onSubmit={handleSave} onInvalidCapture={handleInvalid} className="min-h-0 space-y-5 overflow-y-auto p-5">
+          <form ref={formRef} noValidate onSubmit={handleSave} className="min-h-0 space-y-5 overflow-y-auto p-5">
             {error && (
               <div role="alert" className="sticky top-0 z-10 flex items-center justify-between gap-3 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700 shadow-sm">
                 <span>{error}</span>
@@ -642,7 +636,9 @@ function ProductFormModal({ product, products, onClose, onSaved, onProductsChang
                 Image URL (optional; link only)
                 <input
                   id="product-image-url"
-                  type="url"
+                  type="text"
+                  inputMode="url"
+                  spellCheck="false"
                   value={form.imageUrl ?? ''}
                   maxLength={255}
                   aria-invalid={Boolean(fieldErrors.imageUrl)}
