@@ -1,6 +1,11 @@
 @import "@fontsource/be-vietnam-pro";
 @import "tailwindcss";
 
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
 @theme {
   /* Brand colors */
   --color-brand-50: #eaf6ee;
@@ -35,6 +40,16 @@
     scroll-behavior: smooth;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
   body {
     margin: 0;
     font-family: var(--font-sans);
@@ -60,6 +75,11 @@
   a {
     text-decoration: none;
     color: inherit;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-600);
+    outline-offset: 3px;
   }
 
   img {

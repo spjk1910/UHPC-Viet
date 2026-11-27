@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
@@ -9,7 +9,7 @@ function ProductsPage() {
   const { t } = useTranslation()
   const [searchParams, setSearchParams] = useSearchParams()
   const { categories, products, isLoading, error } = useProductCatalog()
-  const [searchTerm, setSearchTerm] = useState('')
+  const searchTerm = searchParams.get('search') ?? ''
   const selectedCategory = searchParams.get('category') ?? ''
 
   const visibleProducts = useMemo(() => {
@@ -25,11 +25,17 @@ function ProductsPage() {
   }, [products, searchTerm, selectedCategory])
 
   const selectCategory = (slug) => {
-    if (slug) {
-      setSearchParams({ category: slug })
-    } else {
-      setSearchParams({})
-    }
+    const nextParams = new URLSearchParams(searchParams)
+    if (slug) nextParams.set('category', slug)
+    else nextParams.delete('category')
+    setSearchParams(nextParams)
+  }
+
+  const updateSearch = (value) => {
+    const nextParams = new URLSearchParams(searchParams)
+    if (value.trim()) nextParams.set('search', value.trim())
+    else nextParams.delete('search')
+    setSearchParams(nextParams, { replace: true })
   }
 
   return (
@@ -66,6 +72,7 @@ function ProductsPage() {
             <button
               type="button"
               onClick={() => selectCategory('')}
+              aria-pressed={!selectedCategory}
               className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
                 !selectedCategory ? 'border-brand-600 bg-brand-600 text-white' : 'border-gray-200 text-dark hover:border-brand-500'
               }`}
@@ -77,11 +84,12 @@ function ProductsPage() {
                 key={category.id}
                 type="button"
                 onClick={() => selectCategory(category.slug)}
+                aria-pressed={selectedCategory === category.slug}
                 className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
                   selectedCategory === category.slug ? 'border-brand-600 bg-brand-600 text-white' : 'border-gray-200 text-dark hover:border-brand-500'
                 }`}
               >
-                {category.name}
+                {t(`categories.${category.slug}`, category.name)}
               </button>
             ))}
           </div>
@@ -91,7 +99,7 @@ function ProductsPage() {
             <input
               type="search"
               value={searchTerm}
-              onChange={(event) => setSearchTerm(event.target.value)}
+              onChange={(event) => updateSearch(event.target.value)}
               placeholder={t('productsPage.search')}
               className="w-full rounded-full border border-gray-200 px-5 py-3 text-sm outline-none transition-colors focus:border-brand-500"
             />
@@ -100,6 +108,12 @@ function ProductsPage() {
           {error && products.length > 0 && (
             <p className="mt-8 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">
               {t('productsPage.loadError')}
+            </p>
+          )}
+
+          {!isLoading && !error && (
+            <p className="mt-6 text-sm text-concrete" aria-live="polite">
+              {visibleProducts.length} {t('productsPage.title').toLowerCase()}
             </p>
           )}
 

@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 import logo from '../../../assets/images/logo/uhpc-viet_logo.png'
@@ -13,6 +13,7 @@ import { getProductNavigation } from '../../../features/products/services/produc
 
 function Header() {
   const { t, i18n } = useTranslation()
+  const navigate = useNavigate()
 
   const locale = i18n.resolvedLanguage?.startsWith('en')
     ? 'en'
@@ -61,8 +62,8 @@ function Header() {
     const query = searchTerm.trim()
 
     if (query) {
-      window.location.href =
-        `/products?search=${encodeURIComponent(query)}`
+      navigate(`/products?search=${encodeURIComponent(query)}`)
+      setSearchOpen(false)
     }
   }
 
@@ -264,6 +265,7 @@ function Header() {
           className="site-container flex gap-2 border-t border-gray-100 py-3 sm:gap-3 sm:py-4"
         >
           <input
+            aria-label={t('search.search')}
             type="search"
             value={searchTerm}
             onChange={(event) => setSearchTerm(event.target.value)}

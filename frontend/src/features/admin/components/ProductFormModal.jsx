@@ -663,7 +663,7 @@ function ProductFormModal({ product, products, onClose, onSaved, onProductsChang
                     </div>
                     {fieldErrors.models && <p role="alert" className="text-sm text-red-700">{fieldErrors.models}</p>}
                     {form.models.map((model, index) => (
-                      <fieldset key={`${model.modelId}-${index}`} className="space-y-3 rounded-lg bg-gray-50 p-3">
+                      <fieldset key={index} className="space-y-3 rounded-lg bg-gray-50 p-3">
                         <div className="flex items-center justify-between gap-3">
                           <legend className="text-sm font-semibold">Variant {index + 1}</legend>
                           <button

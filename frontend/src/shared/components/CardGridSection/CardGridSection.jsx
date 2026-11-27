@@ -61,7 +61,7 @@ function CardGridSection({
   const renderCard = (item) => (
     <Link
       to={item.to}
-      className="group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+      className="group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
     >
       {item.image ? (
         <div className="h-52 w-full shrink-0 overflow-hidden bg-gray-50">
@@ -70,7 +70,7 @@ function CardGridSection({
             alt={item.title}
             loading="lazy"
             decoding="async"
-            className="h-full w-full object-cover object-center"
+            className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
           />
         </div>
       ) : (

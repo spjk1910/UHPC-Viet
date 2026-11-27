@@ -1,4 +1,7 @@
 {
+  "accessibility": {
+    "skipToContent": "Chuyển đến nội dung chính"
+  },
   "navigation": {
     "home": "Trang Chủ",
     "about": "Giới Thiệu",
@@ -31,6 +34,60 @@
     "description": "Khám phá danh mục sản phẩm và các giải pháp bê tông trong catalogue mới nhất.",
     "open": "Mở tab mới",
     "download": "Tải PDF"
+  },
+  "aboutPage": {
+    "hero": {
+      "eyebrow": "Về chúng tôi",
+      "title": "Giới thiệu về UHPC-Việt",
+      "description": "Kiến tạo giá trị bền vững, đồng hành cùng tương lai."
+    },
+    "company": {
+      "eyebrow": "Về chúng tôi",
+      "title": "Công ty Cổ phần Công nghệ Bê tông UHPC-Việt",
+      "description": "UHPC-Việt chuyên sản xuất và cung cấp các sản phẩm bê tông chất lượng cao phục vụ kiến trúc và xây dựng hiện đại.",
+      "detail": "Kết hợp công nghệ tiên tiến với sự thấu hiểu nhu cầu khách hàng, chúng tôi hướng đến những giải pháp bền chắc, phù hợp với nhiều loại công trình.",
+      "imageAlt": "Các tấm bê tông đúc sẵn tại khu vực sản xuất"
+    },
+    "values": {
+      "eyebrow": "Điều chúng tôi theo đuổi",
+      "title": "Giá trị cốt lõi",
+      "items": {
+        "quality": {
+          "title": "Chất lượng",
+          "description": "Chú trọng tiêu chuẩn trong từng sản phẩm và khâu cung ứng."
+        },
+        "durability": {
+          "title": "Độ bền",
+          "description": "Giải pháp bê tông hướng đến hiệu quả sử dụng lâu dài."
+        },
+        "innovation": {
+          "title": "Đổi mới",
+          "description": "Quy trình hiện đại đáp ứng nhu cầu công trình ngày càng đa dạng."
+        },
+        "partnership": {
+          "title": "Đồng hành",
+          "description": "Lắng nghe, hợp tác và cùng phát triển với khách hàng."
+        }
+      }
+    },
+    "capabilities": {
+      "eyebrow": "Năng lực của chúng tôi",
+      "title": "Giải pháp bê tông cho công trình thực tế",
+      "description": "Từ phát triển sản phẩm đến cung ứng, đội ngũ UHPC-Việt hỗ trợ khách hàng tìm giải pháp bê tông phù hợp với yêu cầu xây dựng và thiết kế.",
+      "points": {
+        "productRange": "Danh mục sản phẩm phục vụ xây dựng, kiến trúc và không gian ngoài trời.",
+        "modernProduction": "Quy trình sản xuất hiện đại, chú trọng chất lượng ổn định.",
+        "customerSupport": "Tư vấn tận tâm để lựa chọn giải pháp phù hợp."
+      },
+      "action": "Khám phá sản phẩm",
+      "imageAlt": "Bàn và ghế được chế tác từ bê tông"
+    },
+    "contact": {
+      "eyebrow": "Cùng hợp tác",
+      "title": "Bạn đang tìm giải pháp bê tông phù hợp?",
+      "description": "Hãy chia sẻ về công trình của bạn, đội ngũ UHPC-Việt sẵn sàng hỗ trợ.",
+      "action": "Liên hệ với chúng tôi"
+    }
   },
   "contactPage": {
     "eyebrow": "Liên hệ với chúng tôi",

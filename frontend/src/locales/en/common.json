@@ -1,4 +1,7 @@
 {
+  "accessibility": {
+    "skipToContent": "Skip to content"
+  },
   "navigation": {
     "home": "Home",
     "about": "About Us",
@@ -31,6 +34,60 @@
     "description": "Explore our product range and concrete solutions in the latest catalogue.",
     "open": "Open in new tab",
     "download": "Download PDF"
+  },
+  "aboutPage": {
+    "hero": {
+      "eyebrow": "About us",
+      "title": "About UHPC-Việt",
+      "description": "Building sustainable value, together for the future."
+    },
+    "company": {
+      "eyebrow": "Who we are",
+      "title": "UHPC-Việt Concrete Technology Joint Stock Company",
+      "description": "UHPC-Việt specializes in producing and supplying high-quality concrete products for modern architecture and construction.",
+      "detail": "By combining advanced technology with a customer-focused approach, we work to deliver durable, considered solutions for a wide range of projects.",
+      "imageAlt": "Precast concrete panels arranged at a production site"
+    },
+    "values": {
+      "eyebrow": "What guides us",
+      "title": "Our core values",
+      "items": {
+        "quality": {
+          "title": "Quality",
+          "description": "Careful standards guide our products from selection to delivery."
+        },
+        "durability": {
+          "title": "Durability",
+          "description": "Concrete solutions designed for long-lasting performance."
+        },
+        "innovation": {
+          "title": "Innovation",
+          "description": "Modern production methods support evolving project needs."
+        },
+        "partnership": {
+          "title": "Partnership",
+          "description": "We listen, collaborate, and grow with our customers."
+        }
+      }
+    },
+    "capabilities": {
+      "eyebrow": "Our capabilities",
+      "title": "Concrete solutions for real-world projects",
+      "description": "From product development to supply, our team helps customers find suitable concrete solutions for their construction and design requirements.",
+      "points": {
+        "productRange": "A range of products for construction, architecture, and outdoor spaces.",
+        "modernProduction": "Modern production processes focused on consistent quality.",
+        "customerSupport": "Responsive guidance to help identify the right solution."
+      },
+      "action": "Explore our products",
+      "imageAlt": "A table and seats crafted from concrete"
+    },
+    "contact": {
+      "eyebrow": "Let’s work together",
+      "title": "Looking for the right concrete solution?",
+      "description": "Tell us about your project and our team will be happy to help.",
+      "action": "Contact our team"
+    }
   },
   "contactPage": {
     "eyebrow": "Get in touch",
