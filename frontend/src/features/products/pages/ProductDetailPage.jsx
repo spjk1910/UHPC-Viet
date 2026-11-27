@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import useProductCatalog from '../hooks/useProductCatalog'
 import ProductCard from '../components/ProductCard'
 import ImagePlaceholder from '../../../shared/components/ImagePlaceholder/ImagePlaceholder'
+import CloseIcon from '../../../assets/icons/CloseIcon'
 
 function ProductDetailPage() {
   const { t, i18n } = useTranslation()
@@ -298,9 +299,9 @@ function ProductDetailPage() {
             type="button"
             onClick={() => setIsImageOpen(false)}
             aria-label={t('productDetail.closeImage')}
-            className="absolute right-4 top-4 rounded-full bg-white px-4 py-2 text-3xl leading-none text-dark shadow-lg hover:bg-gray-100"
+            className="absolute right-4 top-4 rounded-full bg-white p-3 text-dark shadow-lg hover:bg-gray-100"
           >
-            ×
+            <CloseIcon className="h-5 w-5" />
           </button>
           <img
             src={product.imageUrl}
@@ -337,10 +338,10 @@ function ProductDetailPage() {
               <button
                 type="button"
                 onClick={() => setIsQuoteOpen(false)}
-                className="text-2xl leading-none text-concrete hover:text-dark"
+                className="rounded-md p-1 text-concrete hover:text-dark"
                 aria-label={t('productDetail.closeQuote')}
               >
-                ×
+                <CloseIcon className="h-5 w-5" />
               </button>
             </div>
 

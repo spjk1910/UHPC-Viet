@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import ArrowUpIcon from '../../../assets/icons/ArrowUpIcon'
 import EmailIcon from '../../../assets/icons/EmailIcon'
 import PhoneIcon from '../../../assets/icons/PhoneIcon'
+import CloseIcon from '../../../assets/icons/CloseIcon'
 import ZaloIcon from '../../../assets/icons/ZaloIcon'
 
 function ContactBubble() {
@@ -125,7 +126,9 @@ function ContactBubble() {
         {!isOpen && (
           <span className="absolute inset-0 animate-ping rounded-full bg-brand-500/30" />
         )}
-        {isOpen ? '×' : <PhoneIcon className="relative z-10 h-6 w-6 text-white" />}
+        {isOpen
+          ? <CloseIcon className="relative z-10 h-5 w-5 text-white" />
+          : <PhoneIcon className="relative z-10 h-6 w-6 text-white" />}
       </button>
       </div>
     </>

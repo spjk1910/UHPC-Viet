@@ -29,7 +29,7 @@ function AboutPage() {
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-r from-white/95 via-white/85 to-white/20" />
         <div className="site-container flex min-h-[210px] items-center py-9 sm:min-h-[250px] sm:py-11 md:min-h-[280px]">
           <div className="max-w-2xl">
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand-700 sm:text-sm">
+            <p className="inline-flex rounded-full border border-brand-700/10 bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-brand-700 shadow-sm sm:text-sm">
               {t('aboutPage.hero.eyebrow')}
             </p>
             <h1 className="mt-2 text-3xl font-extrabold leading-tight text-dark sm:text-4xl md:text-5xl">
@@ -38,7 +38,13 @@ function AboutPage() {
             <p className="mt-3 max-w-lg text-sm leading-6 text-dark/75 sm:text-base">
               {t('aboutPage.hero.description')}
             </p>
-            <span aria-hidden="true" className="mt-4 block h-0.5 w-10 bg-brand-600" />
+            <Link
+              to="/products"
+              className="mt-5 inline-flex items-center rounded-full bg-brand-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-600"
+            >
+              {t('aboutPage.capabilities.action')}
+              <span aria-hidden="true" className="ml-2">&rarr;</span>
+            </Link>
           </div>
         </div>
       </section>

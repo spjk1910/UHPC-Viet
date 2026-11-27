@@ -49,25 +49,29 @@ function ProductsPage() {
         />
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-gradient-to-r from-gray-200/95 via-gray-100/80 to-gray-100/10"
+          className="absolute inset-0 -z-10 bg-gradient-to-r from-white/95 via-white/85 to-white/15"
         />
-        <div className="site-container flex min-h-[300px] items-center py-12 sm:min-h-[360px] md:min-h-[420px]">
+        <div className="site-container flex min-h-[320px] items-center py-12 sm:min-h-[380px] md:min-h-[430px]">
           <div className="max-w-xl">
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-brand-600">
+            <p className="inline-flex rounded-full border border-brand-600/20 bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-brand-700 shadow-sm">
               {t('productsPage.eyebrow')}
             </p>
-            <h1 className="text-4xl font-extrabold text-dark sm:text-5xl">
+            <h1 className="mt-4 text-4xl font-extrabold leading-tight text-dark sm:text-5xl md:text-6xl">
               {t('productsPage.title')}
             </h1>
-            <p className="mt-5 max-w-xl leading-7 text-concrete">
+            <p className="mt-4 max-w-xl leading-7 text-dark/75 sm:text-lg">
               {t('productsPage.description')}
             </p>
+            <a href="#product-catalog" className="mt-6 inline-flex items-center rounded-full bg-brand-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-600">
+              {t('home.products.action')}
+              <span aria-hidden="true" className="ml-2">&rarr;</span>
+            </a>
           </div>
         </div>
       </section>
 
       <section className="section-spacing">
-        <div className="site-container">
+        <div id="product-catalog" className="site-container scroll-mt-28">
           <div className="flex flex-wrap gap-2">
             <button
               type="button"

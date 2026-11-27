@@ -38,25 +38,29 @@ function ProjectsPage() {
         />
         <div
           aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-gradient-to-r from-white/90 via-white/55 to-white/20 md:from-white/95 md:via-white/60 md:to-transparent"
+          className="absolute inset-0 -z-10 bg-gradient-to-r from-white/95 via-white/85 to-white/15"
         />
-        <div className="site-container flex min-h-[300px] items-center py-12 sm:min-h-[360px] md:min-h-[420px]">
+        <div className="site-container flex min-h-[320px] items-center py-12 sm:min-h-[380px] md:min-h-[430px]">
           <div className="max-w-xl">
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-brand-600">
+            <p className="inline-flex rounded-full border border-brand-600/20 bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-brand-700 shadow-sm">
               {t('projectsPage.eyebrow')}
             </p>
-            <h1 className="text-3xl font-extrabold leading-tight text-dark sm:text-4xl md:text-5xl">
+            <h1 className="mt-4 text-3xl font-extrabold leading-tight text-dark sm:text-4xl md:text-5xl">
               {t('projectsPage.title')}
             </h1>
-            <p className="mt-4 max-w-lg text-sm leading-7 text-concrete sm:text-base">
+            <p className="mt-4 max-w-lg text-sm leading-7 text-dark/75 sm:text-base">
               {t('projectsPage.description')}
             </p>
+            <a href="#projects-list" className="mt-6 inline-flex items-center rounded-full bg-brand-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-600">
+              {t('home.applications.action')}
+              <span aria-hidden="true" className="ml-2">&rarr;</span>
+            </a>
           </div>
         </div>
       </section>
 
       <section className="bg-light py-10 sm:py-14">
-        <div className="site-container">
+        <div id="projects-list" className="site-container scroll-mt-28">
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {projects.map(({ key, image }) => {
               const title = t(`home.applications.items.${key}`)

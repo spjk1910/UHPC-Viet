@@ -53,9 +53,10 @@ function HomePage() {
           aria-hidden="true"
           className="absolute inset-0 -z-10 bg-gradient-to-r from-white/95 via-white/80 to-white/10"
         />
-        <div className="site-container flex min-h-[420px] items-center py-14 sm:min-h-[480px] md:py-20 lg:min-h-[560px] xl:min-h-[600px]">
+        <div className="site-container flex min-h-[440px] items-center py-14 sm:min-h-[500px] md:py-20 lg:min-h-[580px] xl:min-h-[620px]">
           <div className="max-w-xl">
-            <p className="mb-4 inline-flex rounded-full bg-brand-100 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-brand-700">
+            <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-brand-700/10 bg-white/85 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-brand-700 shadow-sm backdrop-blur-sm">
+              <span aria-hidden="true" className="h-2 w-2 rounded-full bg-brand-500" />
               {t('home.hero.eyebrow')}
             </p>
             <h1 className="text-3xl font-extrabold leading-tight text-dark sm:text-4xl md:text-5xl lg:text-6xl">
@@ -65,10 +66,10 @@ function HomePage() {
               {t('home.hero.description')}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/products" className="rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700">
+              <Link to="/products" className="rounded-full bg-brand-700 px-6 py-3 text-sm font-semibold text-white shadow-md transition duration-200 hover:-translate-y-0.5 hover:bg-brand-600">
                 {t('home.hero.primaryAction')}
               </Link>
-              <Link to="/contact" className="rounded-full border border-brand-600 px-6 py-3 text-sm font-semibold text-brand-700 transition-colors hover:bg-brand-100">
+              <Link to="/contact" className="rounded-full border border-brand-700/30 bg-white/75 px-6 py-3 text-sm font-semibold text-brand-700 transition-colors hover:border-brand-600 hover:bg-white">
                 {t('home.hero.secondaryAction')}
               </Link>
             </div>

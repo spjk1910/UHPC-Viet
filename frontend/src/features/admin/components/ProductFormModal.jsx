@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import CloseIcon from '../../../assets/icons/CloseIcon'
 
 import {
   createProduct,
@@ -550,6 +551,7 @@ function ProductFormModal({ product, products, onClose, onSaved, onProductsChang
             aria-label="Close product form"
             className="rounded-lg border border-gray-300 px-3 py-1.5 text-sm font-semibold hover:bg-gray-50 disabled:opacity-50"
           >
+            <CloseIcon className="mr-2 inline-block h-4 w-4 align-middle" />
             Close
           </button>
         </header>
